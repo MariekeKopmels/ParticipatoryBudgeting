@@ -4,8 +4,15 @@ algorithm = 'random'
 no_voters = 5
 no_projects = 2
 min_utility = 0
-max_utility = 100
+max_utility = 99
+min_cost = 0
+max_cost = 1000000
 
 
-def path():
-    return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(no_projects) + '.xlsx'
+def path_utilities():
+    return folder + 'data/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(no_projects) + '.xlsx'
+
+
+def path_costs():
+    return folder + 'data/costs_projects=' + str(no_projects) + '.xlsx'
+

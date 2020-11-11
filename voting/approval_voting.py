@@ -1,4 +1,4 @@
-# This file can generate the approval vote based on the utilities of voters for certain projects.
+# This file can generate the approval vote based on the data of voters for certain projects.
 
 import pandas as pd
 import constants
@@ -14,7 +14,7 @@ def approval(input):
     # output_list = no_projects*[no_voters*[0]]
     #     print(output_list)
     #     # output = pd.DataFrame()
-    #     # output = input.DataFrame(utilities, columns=['project' + str(i) for i in range(0, no_projects)])
+    #     # output = input.DataFrame(data, columns=['project' + str(i) for i in range(0, no_projects)])
     #     for voter in range(0, no_voters):
     #         threshold = 50
     #             # random.randint(int(max_utility / 2), max_utility)
@@ -27,7 +27,7 @@ def approval(input):
 
 
 if __name__ == '__main__':
-    path = constants.path()
+    path = constants.path_utilities()
     utilities = pd.read_excel(path)
     approval_voting = approval(utilities)
     print(approval_voting)
