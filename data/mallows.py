@@ -81,14 +81,3 @@ if __name__ == '__main__':
     no_projects = 3
     p = 0.6
     phi = p/(1-p)
-
-    permutations = all_possible_rankings(no_projects)
-    u = pick_random(permutations)    # Generates one true ranking for a given number of projects.
-    print(u)
-
-    probabilities = len(permutations) * [0]
-    for i, v in enumerate(permutations):
-        probabilities[i] = mallows_model(v, u, p, no_projects, permutations)
-    print(probabilities)
-    print(sum(probabilities))
-    print(permutations)
