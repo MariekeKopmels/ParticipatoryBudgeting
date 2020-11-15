@@ -1,14 +1,18 @@
 # This file can generate the approval vote based on the data of voters for certain projects.
 
 import pandas as pd
-import constants
+from constants import no_projects, no_voters, path_utilities
 import openpyxl
 import xlrd
 
 
 def approval(input):
     threshold = 50
-    return input.transform(lambda x: x >= threshold)
+    print(type(input))
+    approval = {}
+    for i in range(0,no_voters):
+        print(input.iloc[i,1])
+    return 5 #input.transform(lambda x: x >= threshold)
     # Alternative implementation (returns list instead of pandas dataframe)
     #
     # output_list = no_projects*[no_voters*[0]]
@@ -27,7 +31,7 @@ def approval(input):
 
 
 if __name__ == '__main__':
-    path = constants.path_utilities()
+    path = path_utilities()
     utilities = pd.read_excel(path)
     approval_voting = approval(utilities)
     print(approval_voting)
