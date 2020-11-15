@@ -7,9 +7,11 @@ from constants import no_voters, no_projects, min_utility, max_utility, path_uti
 
 def priority_list(threshold_approval):
     approval_counts = threshold_approval.apply(pd.Series.value_counts)
+    print(type(approval_counts))
     test = approval_counts.iloc[1]
     test_1 = list(zip(test, test.index))
     test_1.sort(key=(lambda x: x[0]), reverse=True)
+    print(test_1)
     new_list = []
     for el in test_1:
         new_list.append(int(el[1][-1]))
