@@ -4,15 +4,16 @@ import random
 import pandas as pd
 from constants import no_voters, no_projects, min_utility, max_utility, path_utilities, folder
 
+
 def priority_list(threshold_approval):
     approval_counts = threshold_approval.apply(pd.Series.value_counts)
-    print(approval_counts)
-    threshold_approval = approval_counts.rank(axis='columns')
-    print(threshold_approval)
-    lst = threshold_approval.iloc[1]
-    lieeeest = lst.tolist()
-    lieeeest.sort(key=(lambda x: x[1]))
-    print(lieeeest)
+    test = approval_counts.iloc[1]
+    test_1 = list(zip(test, test.index))
+    test_1.sort(key=(lambda x: x[0]), reverse=True)
+    new_list = []
+    for el in test_1:
+        new_list.append(int(el[1][-1]))
+    return new_list
 
 
 def threshold_approval(utilities, thresholds):
@@ -22,7 +23,6 @@ def threshold_approval(utilities, thresholds):
         # print('threshold of voter ', i, ' : ', thresh)
         for j in range(0, no_projects):
             approval.iloc[i,j] = utilities.iloc[i, j+1] > thresh
-    print('approval: ', approval)
     approval.to_excel(folder + 'threshold_approval.xlsx', index=True, header=True)
     return approval
 
@@ -40,3 +40,4 @@ if __name__ == '__main__':
     thresholds = generate_thresholds()
     threshold_approval = threshold_approval(utilities, thresholds)
     priority_list = priority_list(threshold_approval)
+    print(priority_list)

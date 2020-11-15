@@ -6,7 +6,7 @@
 folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 algorithm = 'mallows'
 no_voters = 100           # NB: this shouldn't be lower than 5
-no_projects = 5
+no_projects = 6
 min_utility = 0
 max_utility = 99
 min_cost = 2000
