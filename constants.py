@@ -2,11 +2,11 @@
 # For the final results, we use €10k, 10 projecten van €2000-8000, 10k deelnemers.
 
 # The base folder where this GitHub project is stored on your computer.
-folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
-# folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+# folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
+folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 algorithm = 'mallows'
 no_voters = 100           # NB: this shouldn't be lower than 5
-no_projects = 6
+no_projects = 4
 min_utility = 0
 max_utility = 99
 min_cost = 2000
