@@ -26,7 +26,8 @@ def aggregate_sum(utility_ballots):
 
 
 if __name__ == '__main__':
-    utilities = pd.read_excel(path_utilities())
+    path = path_utilities()
+    utilities = pd.read_excel(path, index_col=0)
     costs = pd.read_excel(path_costs())
 
     # sums = aggregate_sum(utilities)
