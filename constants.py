@@ -23,3 +23,6 @@ def path_utilities():
 def path_costs():
     return folder + 'data/costs_projects=' + str(no_projects) + '.xlsx'
 
+
+def path_budget():
+    return folder + 'data/budget.xlsx'
