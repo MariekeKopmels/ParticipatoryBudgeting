@@ -6,9 +6,9 @@ from voting.threshold_approval_voting import threshold_approval_voting
 from voting.utility_voting import utility_voting
 from voting.cumulative_voting import cumulative_voting
 from budgeting.knapsack_budgeting import knapsack_budgeting
+from voting.borda import borda_voting
 from constants import *
 
-from voting.borda import borda_voting
 
 if __name__ == '__main__':
     # Generating data...
@@ -22,10 +22,9 @@ if __name__ == '__main__':
                 "cumulative": cumulative_voting(),
                 "borda": borda_voting(),
                 "knapsack": knapsack_voting()}
-
-    print(rankings)
+    print(rankings, "\n")
 
     # ... on which we perform budgeting.
     costs = pd.read_excel(path_costs())
     for name, r in rankings.items():
-        print(name, ': ', knapsack_budgeting(r, costs), "\n")
+        print(name, ':\n', knapsack_budgeting(r, costs), "\n")
