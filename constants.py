@@ -3,9 +3,10 @@
 
 # The base folder where this GitHub project is stored on your computer.
 # folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
-folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+# folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting'
 algorithm = 'mallows'
-no_voters = 99           # NB: this shouldn't be lower than 5
+no_voters = 100           # NB: this shouldn't be lower than 5
 no_projects = 6
 min_utility = 0
 max_utility = 99
