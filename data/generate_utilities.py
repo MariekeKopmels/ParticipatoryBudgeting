@@ -6,7 +6,7 @@ import constants
 from constants import no_voters, no_projects, min_utility, max_utility, algorithm, min_cost, max_cost, mallows_p
 import openpyxl
 import xlrd
-import data.mallows as mallows
+import mallows as mallows
 from datetime import datetime
 
 
