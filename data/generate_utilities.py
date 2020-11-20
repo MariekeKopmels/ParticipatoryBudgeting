@@ -2,8 +2,7 @@
 # given number of projects. It generate these data randomly or with Mallow's model.
 import random
 import pandas as pd
-import constants
-from constants import no_voters, no_projects, min_utility, max_utility, algorithm, min_cost, max_cost, mallows_p
+from constants import *
 import openpyxl
 import xlrd
 import data.mallows as mallows

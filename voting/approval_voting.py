@@ -1,7 +1,7 @@
 # This file can generate the approval vote based on the data of voters for certain projects.
 
 import pandas as pd
-from constants import no_projects, no_voters, path_utilities
+from constants import *
 import openpyxl
 import xlrd
 

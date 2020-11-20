@@ -2,8 +2,7 @@
 
 import random
 import pandas as pd
-from constants import no_voters, no_projects, min_utility, max_utility, path_utilities, folder
-
+from constants import *
 
 def priority_list(threshold_approval):
     approval_counts = threshold_approval.apply(pd.Series.value_counts)

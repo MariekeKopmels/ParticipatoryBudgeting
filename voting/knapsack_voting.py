@@ -1,7 +1,7 @@
 # Author: Marieke Kopmels
 
 import pandas as pd
-from constants import no_projects, no_voters, path_utilities, path_costs, budget
+from constants import *
 
 
 def get_priority_list(knapsack_approval):

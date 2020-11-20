@@ -1,7 +1,7 @@
 # Author:   Lonneke Pulles
 
 import pandas as pd
-from constants import no_projects, path_utilities, path_costs
+from constants import *
 import xlrd
 
 
@@ -25,13 +25,14 @@ def aggregate_sum(utility_ballots):
     return [utilities_per_project[i][1] for i in range(no_projects)]
 
 
-if __name__ == '__main__':
+def utility_voting():
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
     costs = pd.read_excel(path_costs())
 
-    # sums = aggregate_sum(utilities)
-    # print(sums)
+    sums = aggregate_sum(utilities)
+    print(sums)
+    return sums
 
-    utility_dollar_ratio = aggregate_sum_per_cost(utilities, costs)
-    print(utility_dollar_ratio)
+    # utility_dollar_ratio = aggregate_sum_per_cost(utilities, costs)
+    # print(utility_dollar_ratio)

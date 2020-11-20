@@ -1,9 +1,10 @@
 import random
 import pandas as pd
+from constants import *
 
-max_utility = 100
-no_voters = 100
-no_projects = 5
+# max_utility = 100
+# no_voters = 100
+# no_projects = 5
 
 
 def random_utilities():
