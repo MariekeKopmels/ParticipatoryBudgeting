@@ -60,7 +60,8 @@ def utilities_mallow(filename):
     return
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
+def generate_utilities():
     path = constants.path_utilities()
 
     if algorithm == 'random':

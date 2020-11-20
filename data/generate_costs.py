@@ -11,6 +11,6 @@ def generate_costs():
     data = pd.DataFrame(costs, index=[0])
     data.to_excel(path, index=False, header=True)
 
-
-if __name__ == "__main__":
-    generate_costs()
+#
+# if __name__ == "__main__":
+#     generate_costs()

@@ -10,7 +10,6 @@ def priority_list(threshold_approval):
     test = approval_counts.iloc[1]
     test_1 = list(zip(test, test.index))
     test_1.sort(key=(lambda x: x[0]), reverse=True)
-    print(test_1)
     new_list = []
     for el in test_1:
         new_list.append(int(el[1][-1]))
@@ -35,10 +34,13 @@ def generate_thresholds():
     return thr
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
+
+def threshold_approval_voting():
     path = path_utilities()
     utilities = pd.read_excel(path)
     thresholds = generate_thresholds()
-    threshold_approval = threshold_approval(utilities, thresholds)
-    priority_list = priority_list(threshold_approval)
-    print(priority_list)
+    approval = threshold_approval(utilities, thresholds)
+    ranking = priority_list(approval)
+    print('threshold approval ranking: ', ranking)
+    return ranking
