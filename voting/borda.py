@@ -108,7 +108,7 @@ def dowdall_system_voting():
     dowdall = dowdall_system(ranked_votes)
     return order_results(dowdall)
 
-def truncated_dowdall_voting(vote_length):
+def truncated_dowdall_system_voting(vote_length):
     path = path_utilities()
     utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)
