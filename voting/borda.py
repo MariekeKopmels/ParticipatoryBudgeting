@@ -85,6 +85,8 @@ def euro_song_contest(votes, vote_length = no_projects):
             results[votes[voter][project]] += points
     return results
 
+
+
 def borda_voting():
     path = path_utilities()
     utilities = pd.read_excel(path)
