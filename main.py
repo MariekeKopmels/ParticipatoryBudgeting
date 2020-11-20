@@ -22,7 +22,8 @@ if __name__ == '__main__':
                 "cumulative": cumulative_voting(),
                 "borda": borda_voting(),
                 "knapsack": knapsack_voting()}
-    print(rankings, "\n")
+    for name, r in rankings.items():
+        print(name, ": ", r)
 
     # ... on which we perform budgeting.
     costs = pd.read_excel(path_costs())
