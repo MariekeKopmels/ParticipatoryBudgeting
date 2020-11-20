@@ -35,7 +35,7 @@ def ranked_list(input):
             voter_ranked_list[rank] = idx
             voter_ranks[idx] = 999
         output_list.append(voter_ranked_list)
-    print(output_list)
+    # print(output_list)
     return output_list
 
 # This function is used to order the projects after 
@@ -85,17 +85,13 @@ def euro_song_contest(votes, vote_length = no_projects):
             results[votes[voter][project]] += points
     return results
 
-if __name__ == '__main__':
-    # random_utilities()
-    # utilities = pd.read_excel('/home/imme/Documents/AI/Bachelor year 4/Bachelor project/input/test2.xlsx')
-    utilities = pd.read_excel('/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/data/mallows_utilities_voters=100_projects=5.xlsx')
-    # print(utilities)
+def borda_voting():
+# if __name__ == '__main__':
+
+    path = path_utilities()
+    utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)
-
     default = default_borda(ranked_votes)
-    dowdall = dowdall_system(ranked_votes)
-    euro = euro_song_contest(ranked_votes)
+    # print("borda ranking: ")
+    return order_results(default)
 
-    print(order_results(default))
-    print(order_results(dowdall))
-    print(order_results(euro))

@@ -4,6 +4,7 @@ from voting.approval_voting import approval_voting
 from voting.threshold_approval_voting import threshold_approval_voting
 from voting.utility_voting import utility_voting
 from voting.cumulative_voting import cumulative_voting
+from voting.borda import borda_voting
 
 if __name__ == '__main__':
     # generate utilities, costs
@@ -14,6 +15,7 @@ if __name__ == '__main__':
     rankings = [approval_voting(),
                 threshold_approval_voting(),
                 utility_voting(),
-                cumulative_voting()]
+                cumulative_voting(),
+                borda_voting()]
 
     print(rankings)
