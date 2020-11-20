@@ -1,21 +1,31 @@
 from data.generate_costs import generate_costs
 from data.generate_utilities import *
 from voting.approval_voting import approval_voting
+from voting.knapsack_voting import knapsack_voting
 from voting.threshold_approval_voting import threshold_approval_voting
 from voting.utility_voting import utility_voting
 from voting.cumulative_voting import cumulative_voting
+from budgeting.knapsack_budgeting import knapsack_budgeting
+from constants import *
+
 from voting.borda import borda_voting
 
 if __name__ == '__main__':
-    # generate utilities, costs
+    # Generating data...
     generate_utilities()
     generate_costs()
 
-    # perform all voting types
-    rankings = [approval_voting(),
-                threshold_approval_voting(),
-                utility_voting(),
-                cumulative_voting(),
-                borda_voting()]
+    # ... to which we apply multiple voting rules...
+    rankings = {"approval": approval_voting(),
+                "threshold": threshold_approval_voting(),
+                "utility": utility_voting(),
+                "cumulative": cumulative_voting(),
+                "borda": borda_voting(),
+                "knapsack": knapsack_voting()}
 
     print(rankings)
+
+    # ... on which we perform budgeting.
+    costs = pd.read_excel(path_costs())
+    for name, r in rankings.items():
+        print(name, ': ', knapsack_budgeting(r, costs), "\n")

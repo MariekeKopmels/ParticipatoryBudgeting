@@ -41,5 +41,4 @@ def threshold_approval_voting():
     thresholds = generate_thresholds()
     approval = threshold_approval(utilities, thresholds)
     ranking = priority_list(approval)
-    print('threshold approval ranking: ', ranking)
     return ranking

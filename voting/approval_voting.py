@@ -20,6 +20,5 @@ def approval_voting():
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
     approval_voting = approval(utilities)
-    print('Approval ranking: ', approval_voting)
     return approval_voting
 

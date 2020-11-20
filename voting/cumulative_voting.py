@@ -19,7 +19,6 @@ def cumulative_voting():
 
     # Rank projects by sum of votes
     project_ranking = aggregate_sum(ballots)
-    print(project_ranking)
     return project_ranking
 
     # # Rank projects by sum of votes per cost ratio

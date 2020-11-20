@@ -31,7 +31,6 @@ def utility_voting():
     costs = pd.read_excel(path_costs())
 
     sums = aggregate_sum(utilities)
-    print(sums)
     return sums
 
     # utility_dollar_ratio = aggregate_sum_per_cost(utilities, costs)

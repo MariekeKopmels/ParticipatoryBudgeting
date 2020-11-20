@@ -88,17 +88,17 @@ def knapsack_approval_ratio(utilities, costs):
     return approval
 
 
-if __name__ == '__main__':
-    path_utilities = path_utilities()
-    utilities = pd.read_excel(path_utilities)
-    path_costs = path_costs()
-    costs = pd.read_excel(path_costs)
+def knapsack_voting():
+    path_util = path_utilities()
+    utilities = pd.read_excel(path_util)
+    path_c = path_costs()
+    costs = pd.read_excel(path_c)
 
-    knapsack_approval = knapsack_approval(utilities, costs)
-    priority_list = get_priority_list(knapsack_approval)
-    print('priority list: ', priority_list)
+    knapsack_app = knapsack_approval(utilities, costs)
+    priority_list = get_priority_list(knapsack_app)
+    return priority_list
 
-    knapsack_approval_ratio = knapsack_approval_ratio(utilities, costs)
-    priority_list_ratio = get_priority_list(knapsack_approval_ratio)
-    print('ratio priority list: ', priority_list_ratio)
+    # knapsack_approval_ratio = knapsack_approval_ratio(utilities, costs)
+    # priority_list_ratio = get_priority_list(knapsack_approval_ratio)
+    # print('ratio priority list: ', priority_list_ratio)
 
