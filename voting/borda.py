@@ -90,6 +90,39 @@ def borda_voting():
     utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)
     default = default_borda(ranked_votes)
-    # print("borda ranking: ")
     return order_results(default)
 
+def truncated_borda_voting(vote_length):
+    path = path_utilities()
+    utilities = pd.read_excel(path)
+    ranked_votes = ranked_list(utilities)
+    default = default_borda(ranked_votes, vote_length)
+    return order_results(default)
+
+def dowdall_system_voting():
+    path = path_utilities()
+    utilities = pd.read_excel(path)
+    ranked_votes = ranked_list(utilities)
+    dowdall = dowdall_system(ranked_votes)
+    return order_results(dowdall)
+
+def truncated_dowdall_voting(vote_length):
+    path = path_utilities()
+    utilities = pd.read_excel(path)
+    ranked_votes = ranked_list(utilities)
+    dowdall = dowdall_system(ranked_votes, vote_length)
+    return order_results(dowdall)
+
+def euro_song_contest_voting():
+    path = path_utilities()
+    utilities = pd.read_excel(path)
+    ranked_votes = ranked_list(utilities)
+    euro = euro_song_contest(ranked_votes)
+    return order_results(euro)
+
+def truncated_euro_song_contest_voting(vote_length):
+    path = path_utilities()
+    utilities = pd.read_excel(path)
+    ranked_votes = ranked_list(utilities)
+    euro = euro_song_contest(ranked_votes, vote_length)
+    return order_results(euro)
