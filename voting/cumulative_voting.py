@@ -12,8 +12,7 @@ def get_ballots(utilities):
     return utilities.div(aggregate, axis='rows')
 
 
-# if __name__ == '__main__':
-def cumulative_voting():
+def cumulative_voting_sum():
     utilities = pd.read_excel(path_utilities(), index_col=0)
     ballots = get_ballots(utilities)
 
@@ -21,7 +20,12 @@ def cumulative_voting():
     project_ranking = aggregate_sum(ballots)
     return project_ranking
 
-    # # Rank projects by sum of votes per cost ratio
-    # costs = pd.read_excel(path_costs())
-    # project_ranking = aggregate_sum_per_cost(ballots, costs)
-    # print(project_ranking)
+
+def cumulative_voting_ratio():
+    utilities = pd.read_excel(path_utilities(), index_col=0)
+    ballots = get_ballots(utilities)
+
+    # Rank projects by sum of votes per cost ratio
+    costs = pd.read_excel(path_costs())
+    project_ranking = aggregate_sum_per_cost(ballots, costs)
+    return project_ranking

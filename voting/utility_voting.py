@@ -25,13 +25,18 @@ def aggregate_sum(utility_ballots):
     return [utilities_per_project[i][1] for i in range(no_projects)]
 
 
-def utility_voting():
+def utility_voting_sum():
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
-    costs = pd.read_excel(path_costs())
 
     sums = aggregate_sum(utilities)
     return sums
 
-    # utility_dollar_ratio = aggregate_sum_per_cost(utilities, costs)
-    # print(utility_dollar_ratio)
+
+def utility_voting_ratio():
+    path = path_utilities()
+    utilities = pd.read_excel(path, index_col=0)
+    costs = pd.read_excel(path_costs())
+
+    utility_dollar_ratio = aggregate_sum_per_cost(utilities, costs)
+    return utility_dollar_ratio
