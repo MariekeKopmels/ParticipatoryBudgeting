@@ -15,9 +15,11 @@ def approval(input):
     return [x[1] for x in list]
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
+def approval_voting():
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
     approval_voting = approval(utilities)
-    print(approval_voting)
+    print('Approval ranking: ', approval_voting)
+    return approval_voting
 
