@@ -1,0 +1,156 @@
+from data.generate_costs import generate_costs
+from data.generate_utilities import *
+from budgeting.knapsack_budgeting import knapsack_budgeting
+
+from constants import *
+from satisfaction.social_welfare_satisfaction import social_welfare_satisfaction
+
+if __name__ == '_main_':
+    # Generating data...
+    generate_utilities()
+    generate_costs()
+
+    # ... to which we apply multiple voting rules...
+    for name, r in rankings.items():
+        print(name, ": ", r)
+    rankings_pd = pd.DataFrame(rankings)
+    rankings_pd.to_excel(path_ranking())
+
+
+    # ... on which we perform budgeting.
+    # TODO: extract to another file/function
+    costs = pd.read_excel(path_costs())
+    approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
+    for name, r in rankings.items():
+        approval = knapsack_budgeting(r, costs)
+        print(name, ':\n', approval, "\n")
+        print('test: ', approval.iloc[0, 0])
+        temp = []
+        for project in range(no_projects):
+            temp.append(approval.iloc[0, project])
+        approval_pd.loc[name] = temp
+    approval_pd.to_excel(path_approval())
+
+    social_welfare_satisfaction()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# This file contains the constants used throughout the project.
+# For the final results, we use €10k, 10 projecten van €2000-8000, 10k deelnemers.
+
+# The base folder where this GitHub project is stored on your computer.
+# folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
+from voting.approval_voting import approval_voting
+from voting.cumulative_voting import cumulative_voting_sum, cumulative_voting_ratio
+from voting.knapsack_voting import knapsack_voting, knapsack_voting_ratio
+from voting.borda import borda_voting, dowdall_system_voting, euro_song_contest_voting
+from voting.threshold_approval_voting import threshold_approval_voting
+from voting.utility_voting import utility_voting_sum, utility_voting_ratio
+
+folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
+algorithm = 'mallows'
+no_voters = 100           # NB: this shouldn't be lower than 5
+no_projects = 6
+min_utility = 0
+max_utility = 99
+min_cost = 2000
+max_cost = 5000
+budget = 10000
+mallows_p = 0.6
+
+
+rankings = {"approval": approval_voting(),
+                "threshold": threshold_approval_voting(),
+                "utility sum": utility_voting_sum(),
+                "utility ratio": utility_voting_ratio(),
+                "cumulative sum": cumulative_voting_sum(),
+                "cumulative ratio": cumulative_voting_ratio(),
+                "knapsack": knapsack_voting(),
+                "knapsack ratio": knapsack_voting_ratio(),
+                "default borda": borda_voting(),
+                "default borda truncated": borda_voting(3),
+                "dowdall system borda": dowdall_system_voting(),
+                "dowdall system borda truncated": dowdall_system_voting(3),
+                "eurovision song contest borda": euro_song_contest_voting(),
+                "eurovision song contest borda truncated": euro_song_contest_voting(3)}
+
+
+def path_utilities():
+    return folder + 'data/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(no_projects) + '.xlsx'
+
+
+def path_costs():
+    return folder + 'data/costs_projects=' + str(no_projects) + '.xlsx'
+
+
+def path_ranking():
+    return folder + 'data/ranking.xlsx'
+
+
+def path_approval():
+    return folder + 'data/approval.xlsx'
+
+
+def path_budget():
+    return folder + 'data/budget.xlsx'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Voor elke agent utility optellen van alle approved projects
+
+import pandas as pd
+from constants import *
+
+
+def social_welfare_satisfaction():
+    path = path_approval()
+    approval = pd.read_excel(path)
+    path = path_utilities()
+    utilities = pd.read_excel(path)
+    total_utility = pd.DataFrame()
+    for project in range(no_projects):
+        for voting_system in range(len(rankings)):
+            print('approval.iloc[voting_system, project]: ', approval.iloc[voting_system, project])
+            if approval.iloc[voting_system, project]:
+                for voter in range(no_voters):
+                    total_utility.iloc[voting_system, 1] += utilities.iloc[voter, project]
+    print(total_utility)
+
+
+
