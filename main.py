@@ -35,8 +35,19 @@ if __name__ == '__main__':
                 "eurovision song contest borda truncated": euro_song_contest_voting(3)}
     for name, r in rankings.items():
         print(name, ": ", r)
+    rankings_pd = pd.DataFrame(rankings)
+    rankings_pd.to_excel(path_ranking())
+
 
     # ... on which we perform budgeting.
     costs = pd.read_excel(path_costs())
+    approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
     for name, r in rankings.items():
-        print(name, ':\n', knapsack_budgeting(r, costs), "\n")
+        approval = knapsack_budgeting(r, costs)
+        print(name, ':\n', approval, "\n")
+        print('test: ', approval.iloc[0, 0])
+        temp = []
+        for project in range(no_projects):
+            temp.append(approval.iloc[0, project])
+        approval_pd.loc[name] = temp
+    approval_pd.to_excel(path_approval())
