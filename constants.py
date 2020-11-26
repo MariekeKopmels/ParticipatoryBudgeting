@@ -3,8 +3,8 @@
 
 # The base folder where this GitHub project is stored on your computer.
 # folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
-folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
-# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
+# folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
 algorithm = 'mallows'
 no_voters = 100           # NB: this shouldn't be lower than 5
 no_projects = 6
@@ -34,3 +34,10 @@ def path_approval():
 
 def path_budget():
     return folder + 'data/budget.xlsx'
+
+def path_approved_projects():
+    return folder + 'data/approval.xlsx'
+
+# TODO: zorg dat satisfaction zn eigen foldertje binnen data krijgt ofzo
+def path_welfare_satisfaction():
+    return folder + 'data/satisfaction.xlsx'

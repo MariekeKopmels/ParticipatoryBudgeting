@@ -14,8 +14,7 @@ def utilities_random(filename):
     for i in range(0, no_projects):
         name = 'project' + str(i)
         utilities[name] = [random.randint(min_utility, max_utility) for _ in range(0, no_voters)]
-    data = pd.DataFrame(utilities,
-                        columns=['project' + str(i) for i in range(0, no_projects)])
+    data = pd.DataFrame(utilities, columns=['project' + str(i) for i in range(0, no_projects)])
     data.to_excel(filename, index=False, header=True)
 
 
@@ -51,8 +50,7 @@ def utilities_mallow(filename):
 
         name = 'voter' + str(i)
         utilities[name] = [random_utilities[idx][0] for idx in range(no_projects)]
-    data = pd.DataFrame(utilities,
-                        columns=['voter' + str(i) for i in range(0, no_voters)])
+    data = pd.DataFrame(utilities, columns=['voter' + str(i) for i in range(0, no_voters)])
     data = data.transpose()
     data.columns = ['project' + str(i) for i in range(no_projects)]
     data.to_excel(filename, index=True, header=True)
