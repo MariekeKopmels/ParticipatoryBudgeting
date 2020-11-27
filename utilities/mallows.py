@@ -17,67 +17,42 @@
 # The number of and differences between voters is ignored. As a result, we simply assume that each voter
 # has the same probability p of choosing the better alternative.
 
-from datetime import datetime
-import random
-import itertools
+from utilities.mallows_helper import *
+from constants import no_projects, mallows_p
+from random import random
 
 
-# # Returns the combination (nCr): the number of ways in which r elements can be chosen from n objects.
-# def ncr(n, r):
-#     r = min(r, n-r)
-#     numer = reduce(op.mul, range(n, n-r, -1), 1)
-#     denom = reduce(op.mul, range(1, r+1), 1)
-#     return numer // denom
+class Mallows:
 
+    def __init__(self, u, permutations):
+        self.u = u
+        self.permutations = permutations
 
-# Generates all possible rankings for a given number of projects.
-def all_possible_rankings(no_projects):
-    basis = list(range(no_projects))
-    return list(itertools.permutations(basis))
+        self.phi = mallows_p / (1 - mallows_p)
+        self.mu_p = self.get_mu_p(u)
 
+        self.probabilities = len(permutations) * [0]
+        for i, v in enumerate(permutations):
+            self.probabilities[i] = self._probability(v)
 
-def pick_random(permutations):
-    return permutations[random.randint(0, len(permutations)-1)]
+    # Returns mu_p, where mu_p is the sum over all possible rankings v given a set of projects
+    # of phi ** (- d_swap(v,u))
+    def get_mu_p(self, u):
+        sum_mu = 0
+        for v in self.permutations:
+            sum_mu += self.phi ** (-d_swap(v, u, no_projects))
+        return sum_mu
 
+    def _probability(self, v):
+        dist = d_swap(v, self.u, no_projects)
+        return 1 / self.mu_p * self.phi ** (-dist)
 
-# Returns the swap distance: the number of elements one should swap in one ranking to obtain
-# the other. Formally, the number of pairs (c, c′) ∈ A × A such that u ranks c above c′, but v
-# ranks c′ above c.
-# Can also be calculated with: nCr(no_projects, 2) - k, where k is the number of rankings u and v
-# agree on.
-# FIXME
-def d_swap(v, u, no_projects):
-    count = 0
-    for i in range(no_projects-1):
-        for j in range(i+1, no_projects):
-            if (v.index(i) > v.index(j)) != (u.index(i) > u.index(j)):
-                # u and v do not agree on the ranking of alternatives i and j.
-                count += 1
-    return count
-    # return 0
-
-
-# Returns mu_p, where mu_p is the sum over all possible rankings v given a set of projects
-# of phi ** (- d_swap(v,u))
-def get_mu_p(u, phi, no_projects, all_possible_v):
-    sum = 0
-    for v in all_possible_v:
-        sum += phi ** (-d_swap(v, u, no_projects))
-    return sum
-
-
-def mallows_model(v, u, p, no_projects, all_possible_v):
-    phi = p/(1-p)
-    mu_p = get_mu_p(u, phi, no_projects, all_possible_v)
-    dist = d_swap(v, u, no_projects)
-    # print('d_swap: ', dist)
-    # print('1/mu_p: ', 1/mu_p)
-    # print('phi: ', phi)
-    return 1/mu_p * phi ** (-dist)
-
-
-if __name__ == '__main__':
-    random.seed(datetime.now())
-    no_projects = 3
-    p = 0.6
-    phi = p/(1-p)
+    # Select a random ranking permutations[j], taking into account the probabilities of each ranking.
+    def draw_ranking(self):
+        num = random()
+        sum_p = self.probabilities[0]
+        j = 0
+        while num > sum_p:
+            sum_p += self.probabilities[j]
+            j += 1
+        return self.permutations[j]

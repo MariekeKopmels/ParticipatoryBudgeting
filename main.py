@@ -19,6 +19,7 @@ from constants import *
 
 if __name__ == '__main__':
     # Generating utilities...
+    random.seed(datetime.now())
     generate_utilities()
     generate_costs()
 
