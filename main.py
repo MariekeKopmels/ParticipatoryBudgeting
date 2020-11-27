@@ -1,24 +1,24 @@
-from data.generate_costs import generate_costs
-from data.generate_utilities import *
+from utilities.generate_costs import generate_costs
+from utilities.generate_utilities import *
+
 from voting.approval_voting import approval_voting
 from voting.knapsack_voting import knapsack_voting, knapsack_voting_ratio
 from voting.threshold_approval_voting import threshold_approval_voting
-from voting.utility_voting import utility_voting_sum, utility_voting_ratio
+from voting.utility_voting import utility_voting_sum, utility_voting_ratio, utility_voting_product
 from voting.cumulative_voting import cumulative_voting_sum, cumulative_voting_ratio
-from budgeting.knapsack_budgeting import knapsack_budgeting
 from voting.borda import borda_voting
 from voting.borda import dowdall_system_voting
 from voting.borda import euro_song_contest_voting
 
-from voter_satisfaction.social_welfare_satisfaction import social_welfare_satisfaction
-from voter_satisfaction.total_social_welfare_satisfaction import total_social_welfare_satisfaction
-from voter_satisfaction.egalitarian_satisfaction import *
+from budgeting.knapsack_budgeting import knapsack_budgeting
+
+from results.satisfaction import *
 
 from constants import *
 
 
 if __name__ == '__main__':
-    # Generating data...
+    # Generating utilities...
     generate_utilities()
     generate_costs()
 
@@ -27,6 +27,7 @@ if __name__ == '__main__':
                 "threshold": threshold_approval_voting(),
                 "utility sum": utility_voting_sum(),
                 "utility ratio": utility_voting_ratio(),
+                "utility product": utility_voting_product(),
                 "cumulative sum": cumulative_voting_sum(),
                 "cumulative ratio": cumulative_voting_ratio(),
                 "knapsack": knapsack_voting(),
@@ -42,6 +43,9 @@ if __name__ == '__main__':
     rankings_pd = pd.DataFrame(rankings)
     rankings_pd.to_excel(path_ranking())
 
+    # rankings = pd.read_excel(path_ranking(), index_col=0)
+    # print(rankings)
+
     # ... on which we perform budgeting.
     costs = pd.read_excel(path_costs())
     approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
@@ -53,8 +57,9 @@ if __name__ == '__main__':
         for project in range(no_projects):
             temp.append(approval.iloc[0, project])
         approval_pd.loc[name] = temp
-    approval_pd.to_excel(path_approval())
+    approval_pd.to_excel(path_approved_projects())
 
     ranking_keys = [key for key in rankings]
 
+    # Finally, evaluate the voters' results with the selected projects.
     satisfaction(ranking_keys)

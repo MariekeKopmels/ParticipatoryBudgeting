@@ -2,11 +2,11 @@
 # For the final results, we use €10k, 10 projecten van €2000-8000, 10k deelnemers.
 
 # The base folder where this GitHub project is stored on your computer.
-# folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
+folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
 # folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
-folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
+# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
 algorithm = 'mallows'
-no_voters = 10           # NB: this shouldn't be lower than 5
+no_voters = 10  # NB: this shouldn't be lower than 5
 no_projects = 6
 min_utility = 0
 max_utility = 99
@@ -17,28 +17,29 @@ mallows_p = 0.6
 
 
 def path_utilities():
-    return folder + 'data/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(no_projects) + '.xlsx'
+    return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects) + '.xlsx'
 
 
 def path_costs():
-    return folder + 'data/costs_projects=' + str(no_projects) + '.xlsx'
+    return folder + 'utilities/costs_projects=' + str(no_projects) + '.xlsx'
 
 
 def path_ranking():
-    return folder + 'data/ranking.xlsx'
-
-
-def path_approval():
-    return folder + 'data/approval.xlsx'
+    return folder + 'results/ranking_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects) + '.xlsx'
 
 
 def path_budget():
-    return folder + 'data/budget.xlsx'
+    return folder + 'results/budget_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects) + '.xlsx'
 
 
 def path_approved_projects():
-    return folder + 'data/approval.xlsx'
+    return folder + 'results/approved_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects) + '.xlsx'
 
 
-def path_satisfaction(measurement):
-    return folder + 'data/satisfaction/' + measurement + '.xlsx'
+def path_satisfaction():
+    return folder + 'results/satisfaction_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects) + '.xlsx'

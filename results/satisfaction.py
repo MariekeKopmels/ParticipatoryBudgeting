@@ -1,5 +1,6 @@
 import pandas as pd
-from constants import *
+from constants import no_voters, no_projects, path_approved_projects, path_utilities, path_satisfaction
+
 
 def add_result_columns(utilities):
     utilities[-1] = max(utilities[:no_voters])
@@ -18,7 +19,7 @@ def satisfaction(ranking_keys):
     total_dataframe = pd.DataFrame(index=ranking_keys, columns=columns)
 
     # For every algorithm
-    for algorithm in range(len(ranking_keys)): # length of rankings dictionary in main
+    for algorithm in range(len(ranking_keys)):  # length of rankings dictionary in main
         # Create list of utilities for every voter
         approved_utils = (no_voters + 3) * [0]
         total_utils = (no_voters + 3) * [0]
@@ -38,7 +39,6 @@ def satisfaction(ranking_keys):
         approved_dataframe.loc[ranking_keys[algorithm]] = approved_utils
         total_dataframe.loc[ranking_keys[algorithm]] = total_utils
 
-    with pd.ExcelWriter(path_satisfaction('satisfaction')) as writer:
+    with pd.ExcelWriter(path_satisfaction()) as writer:
         approved_dataframe.to_excel(writer, sheet_name='approved')
         total_dataframe.to_excel(writer, sheet_name='total')
-

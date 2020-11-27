@@ -1,11 +1,11 @@
-# This file can generate an excel file contain the data of given number of voters for a
-# given number of projects. It generate these data randomly or with Mallow's model.
+# This file can generate an excel file contain the utilities of given number of voters for a
+# given number of projects. It generate these utilities randomly or with Mallow's model.
 import random
 import pandas as pd
 from constants import *
 import openpyxl
 import xlrd
-import data.mallows as mallows
+import utilities.mallows as mallows
 from datetime import datetime
 
 
