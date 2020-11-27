@@ -6,7 +6,7 @@
 # folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
 algorithm = 'mallows'
-no_voters = 100           # NB: this shouldn't be lower than 5
+no_voters = 10           # NB: this shouldn't be lower than 5
 no_projects = 6
 min_utility = 0
 max_utility = 99
@@ -35,9 +35,10 @@ def path_approval():
 def path_budget():
     return folder + 'data/budget.xlsx'
 
+
 def path_approved_projects():
     return folder + 'data/approval.xlsx'
 
-# TODO: zorg dat satisfaction zn eigen foldertje binnen data krijgt ofzo
-def path_welfare_satisfaction():
-    return folder + 'data/satisfaction.xlsx'
+
+def path_satisfaction(measurement):
+    return folder + 'data/satisfaction/' + measurement + '.xlsx'

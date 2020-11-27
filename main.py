@@ -11,14 +11,16 @@ from voting.borda import dowdall_system_voting
 from voting.borda import euro_song_contest_voting
 
 from voter_satisfaction.social_welfare_satisfaction import social_welfare_satisfaction
+from voter_satisfaction.total_social_welfare_satisfaction import total_social_welfare_satisfaction
+from voter_satisfaction.egalitarian_satisfaction import *
 
 from constants import *
 
 
 if __name__ == '__main__':
-    # # Generating data...
-    # generate_utilities()
-    # generate_costs()
+    # Generating data...
+    generate_utilities()
+    generate_costs()
 
     # ... to which we apply multiple voting rules...
     rankings = {"approval": approval_voting(),
@@ -40,8 +42,6 @@ if __name__ == '__main__':
     rankings_pd = pd.DataFrame(rankings)
     rankings_pd.to_excel(path_ranking())
 
-    ranking_keys = [key for key in rankings]
-
     # ... on which we perform budgeting.
     costs = pd.read_excel(path_costs())
     approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
@@ -55,4 +55,6 @@ if __name__ == '__main__':
         approval_pd.loc[name] = temp
     approval_pd.to_excel(path_approval())
 
-    social_welfare_satisfaction(ranking_keys)
+    ranking_keys = [key for key in rankings]
+
+    satisfaction(ranking_keys)
