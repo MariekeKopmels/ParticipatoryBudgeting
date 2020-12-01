@@ -5,15 +5,24 @@
 folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
 # folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 # folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
-algorithm = 'mallows'
+
+# General data constants
 no_voters = 10  # NB: this shouldn't be lower than 5
 no_projects = 6
-min_utility = 0
-max_utility = 99
-min_cost = 2000
-max_cost = 5000
+
+# Utilities constants
+algorithm = 'mallows'
+min_utility = 0     # of a voter
+max_utility = 99    # of a voter
+
+# Money constants
+min_cost = 2000     # of a project
+max_cost = 5000     # of a project
 budget = 10000
+
+# Mallows constants
 mallows_p = 0.6
+no_true_rankings = 2
 
 
 def path_utilities():
