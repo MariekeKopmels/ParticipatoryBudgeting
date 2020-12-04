@@ -1,7 +1,7 @@
 # Generates all possible rankings for a given number of projects.
 import itertools
 from random import randint
-from constants import min_utility, max_utility
+from constants import min_utility, max_utility, division
 
 
 # # Returns the combination (nCr): the number of ways in which r elements can be chosen from n objects.
@@ -17,10 +17,12 @@ from utilities.mallows import Mallows
 
 
 def spread_voters(no_u, no_voters):
-    voters_per_u = no_u * [0]
-    for _ in range(no_voters):
-        voters_per_u[randint(0, no_u - 1)] += 1
-    return voters_per_u
+    if no_u == 1:
+        return [no_voters]
+    else:
+        l = [division * no_voters]
+        l.append(no_voters - l[0])
+        return l
 
 
 def all_possible_rankings(no_projects):
@@ -38,16 +40,22 @@ def pick_random(permutations):
 # Can also be calculated with: nCr(no_projects, 2) - k, where k is the number of rankings u and v
 # agree on.
 # FIXME
+
 def d_swap(v, u, no_projects):
     count = 0
     for i in range(no_projects - 1):
         for j in range(i + 1, no_projects):
-            print("(", i, ", ", j, "). v: (", v.index(i), ", ", v.index(j), "), u: (", u.index(i), ", ", u.index(j), ")")
             if (v.index(i) > v.index(j)) != (u.index(i) > u.index(j)):
                 # u and v do not agree on the ranking of alternatives i and j.
                 count += 1
     return count
 
+
+def flip(ranking):
+    flip = [0] * len(ranking)
+    for i in range(len(ranking)):
+        flip[i] = ranking[-(i+1)]
+    return flip
 
 # Helper function of utilities_mallows.
 # Generates a dictionary of utilities per voter for every project using Mallows' model.
@@ -70,10 +78,3 @@ def true_ranking_utilities(u, permutations, no_voters_u, start_no):
         utilities[name] = [random_utilities[idx][0] for idx in range(no_projects)]
     return utilities
 
-
-if __name__ == "__main__":
-    v = [0,1,2,3,4]
-    u = [4,3,2,1,0]
-    no_projects = 5
-
-    print(d_swap(v, u, no_projects))

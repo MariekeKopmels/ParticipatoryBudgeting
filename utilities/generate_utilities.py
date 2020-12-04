@@ -19,14 +19,16 @@ def utilities_random(filename):
 def utilities_mallows(filename):
     seed(datetime.now())
     permutations = all_possible_rankings(no_projects)
-    true_rankings = [pick_random(permutations) for _ in range(no_true_rankings)]  # TODO
+    true_rankings = [pick_random(permutations)]
+    if opposite_true_rankings:
+        true_rankings.append(flip(true_rankings[0]))
     print("True rankings: ")
-    print(true_rankings)
+    print(true_rankings) 
 
     utilities = {}
     start_no = 0
-    voters_per_u = spread_voters(no_true_rankings, no_voters)
-
+    voters_per_u = spread_voters(2 if opposite_true_rankings else 1, no_voters)
+    print(voters_per_u)
     # Select one or more true rankings.
     for u, voters in zip(true_rankings, voters_per_u):
         utilities.update(true_ranking_utilities(u, permutations, voters, start_no))
