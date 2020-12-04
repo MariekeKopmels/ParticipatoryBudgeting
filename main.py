@@ -20,7 +20,6 @@ from constants import *
 
 
 if __name__ == '__main__':
-    # mallows_helper()
     # # Generating utilities...
     random.seed(datetime.now())
     generate_utilities()

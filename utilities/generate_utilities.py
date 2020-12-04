@@ -1,10 +1,10 @@
 # This file can generate an excel file contain the utilities of given number of voters for a
 # given number of projects. It generate these utilities randomly or with Mallow's model.
 from datetime import datetime
-from random import seed, random
+from random import seed, randint
 import pandas as pd
 from constants import *
-from utilities.mallows_helper import *
+from utilities.mallows import Mallows, spread_voters, all_possible_rankings, pick_random, flip, true_ranking_utilities
 
 
 def utilities_random(filename):
