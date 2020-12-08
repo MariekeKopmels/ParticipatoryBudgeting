@@ -65,7 +65,7 @@ class Mallows:
 #     denom = reduce(op.mul, range(1, r+1), 1)
 #     return numer // denom
 
-def spread_voters(no_u, no_voters):
+def spread_voters(no_u):
     if no_u == 1:
         return [no_voters]
     else:
@@ -88,8 +88,7 @@ def pick_random(permutations):
 # ranks c′ above c.
 # Can also be calculated with: nCr(no_projects, 2) - k, where k is the number of rankings u and v
 # agree on.
-# FIXME
-def d_swap(v, u, no_projects):
+def d_swap(v, u):
     count = 0
     for i in range(no_projects - 1):
         for j in range(i + 1, no_projects):
