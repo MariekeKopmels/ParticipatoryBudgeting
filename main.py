@@ -5,11 +5,10 @@ from voting.approval_voting import approval_voting
 from voting.knapsack_voting import knapsack_voting, knapsack_voting_ratio
 from voting.threshold_approval_voting import threshold_approval_voting
 from voting.utility_voting import utility_voting_sum, utility_voting_ratio, utility_voting_product
-from voting.cumulative_voting import cumulative_voting_sum, cumulative_voting_ratio
+from voting.cumulative_voting import cumulative_voting_sum, cumulative_voting_ratio, cumulative_voting_product
 from voting.borda import borda_voting
 from voting.borda import dowdall_system_voting
 from voting.borda import euro_song_contest_voting
-from pathlib import Path
 
 
 from budgeting.knapsack_budgeting import knapsack_budgeting
@@ -36,6 +35,7 @@ def main_function():
                 "utility product": utility_voting_product(),
                 "cumulative sum": cumulative_voting_sum(),
                 "cumulative ratio": cumulative_voting_ratio(),
+                "cumulative product": cumulative_voting_product(),
                 "knapsack": knapsack_voting(),
                 "knapsack ratio": knapsack_voting_ratio(),
                 "default borda": borda_voting(),
@@ -44,6 +44,7 @@ def main_function():
                 "dowdall system borda truncated": dowdall_system_voting(3),
                 "eurovision song contest borda": euro_song_contest_voting(),
                 "eurovision song contest borda truncated": euro_song_contest_voting(3)}
+
     # for name, r in rankings.items():
     #     print(name, ": ", r)
     rankings_pd = pd.DataFrame(rankings)
