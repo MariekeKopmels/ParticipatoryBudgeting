@@ -55,7 +55,6 @@ def utility_voting_ratio():
 def utility_voting_product():
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
-    print(utilities)
     return aggregate_product(utilities)
 
 

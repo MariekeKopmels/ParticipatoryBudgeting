@@ -1,7 +1,7 @@
 # Author:   Lonneke Pulles
 
 from constants import *
-from voting.utility_voting import aggregate_sum, aggregate_sum_per_cost
+from voting.utility_voting import aggregate_sum, aggregate_sum_per_cost, aggregate_product
 import pandas as pd
 
 
@@ -28,4 +28,13 @@ def cumulative_voting_ratio():
     # Rank projects by sum of votes per cost ratio
     costs = pd.read_excel(path_costs())
     project_ranking = aggregate_sum_per_cost(ballots, costs)
+    return project_ranking
+
+
+def cumulative_voting_product():
+    utilities = pd.read_excel(path_utilities(), index_col=0)
+    ballots = get_ballots(utilities)
+
+    # Rank projects from highest to lowest product of received votes
+    project_ranking = aggregate_product(ballots)
     return project_ranking
