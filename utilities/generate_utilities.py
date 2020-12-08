@@ -29,7 +29,7 @@ def utilities_mallows(filename):
     utilities = {}
     start_no = 0
     voters_per_u = spread_voters(2 if opposite_true_rankings else 1, no_voters)
-    print(voters_per_u)
+    # print(voters_per_u)
     # Select one or more true rankings.
     for u, voters in zip(true_rankings, voters_per_u):
         utilities.update(true_ranking_utilities(u, permutations, voters, start_no))

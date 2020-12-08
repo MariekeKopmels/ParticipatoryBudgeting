@@ -3,12 +3,12 @@
 
 # The base folder where this GitHub project is stored on your computer.
 # folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
-folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
-# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
+# folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
 
 # General data constants
-no_voters = 500  # NB: this shouldn't be lower than 5
-no_projects = 10
+no_voters = 300  # NB: this shouldn't be lower than 5
+no_projects = 20
 
 # Utilities constants
 algorithm = 'mallows'
@@ -16,7 +16,8 @@ min_utility = 1     # of a voter
 max_utility = 100    # of a voter
 
 # Money constants
-min_cost = 200     # of a project
+# Note: cost of all projects combined must always be higher than budget
+min_cost = 501     # of a project
 max_cost = 5000     # of a project
 budget = 10000
 

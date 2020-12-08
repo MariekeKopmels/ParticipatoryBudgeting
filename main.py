@@ -73,7 +73,7 @@ def main_function():
 
 
 if __name__ == '__main__':
-    for constants.run_no in range(3):
+    for constants.run_no in range(10):
         print(constants.run_no)
         main_function()
 

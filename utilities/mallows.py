@@ -55,6 +55,8 @@ class Mallows:
         while num > sum_p:
             sum_p += self.probabilities[j]
             j += 1
+        if j >= len(self.permutations):
+            return self.permutations[j-1]
         return self.permutations[j]
 
 

@@ -6,6 +6,7 @@ from constants import *
 
 def get_priority_list(knapsack_approval):
     approval_counts = knapsack_approval.apply(pd.Series.value_counts)
+    # Crashes when all projects combined are within budget
     test = approval_counts.iloc[1]
     test_1 = list(zip(test, test.index))
     test_1.sort(key=(lambda x: x[0]), reverse=True)
