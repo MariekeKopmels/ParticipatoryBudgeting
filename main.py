@@ -9,60 +9,71 @@ from voting.cumulative_voting import cumulative_voting_sum, cumulative_voting_ra
 from voting.borda import borda_voting
 from voting.borda import dowdall_system_voting
 from voting.borda import euro_song_contest_voting
+from pathlib import Path
+
 
 from budgeting.knapsack_budgeting import knapsack_budgeting
 
 from results.satisfaction import *
 
-from constants import *
+import constants
 
 # from utilities.mallows_helper import mallows_helper
 
 
-if __name__ == '__main__':
+def main_function():
     # # Generating utilities...
     random.seed(datetime.now())
     generate_utilities()
-    # generate_costs()
+    generate_costs()
 
-    # # ... to which we apply multiple voting rules...
-    # rankings = {"approval": approval_voting(),
-    #             "threshold": threshold_approval_voting(),
-    #             "utility sum": utility_voting_sum(),
-    #             "utility ratio": utility_voting_ratio(),
-    #             "utility product": utility_voting_product(),
-    #             "cumulative sum": cumulative_voting_sum(),
-    #             "cumulative ratio": cumulative_voting_ratio(),
-    #             "knapsack": knapsack_voting(),
-    #             "knapsack ratio": knapsack_voting_ratio(),
-    #             "default borda": borda_voting(),
-    #             "default borda truncated": borda_voting(3),
-    #             "dowdall system borda": dowdall_system_voting(),
-    #             "dowdall system borda truncated": dowdall_system_voting(3),
-    #             "eurovision song contest borda": euro_song_contest_voting(),
-    #             "eurovision song contest borda truncated": euro_song_contest_voting(3)}
+    # print('run_no now is ', constants.run_no)
+    # ... to which we apply multiple voting rules...
+    rankings = {"approval": approval_voting(),
+                "threshold": threshold_approval_voting(),
+                "utility sum": utility_voting_sum(),
+                "utility ratio": utility_voting_ratio(),
+                "utility product": utility_voting_product(),
+                "cumulative sum": cumulative_voting_sum(),
+                "cumulative ratio": cumulative_voting_ratio(),
+                "knapsack": knapsack_voting(),
+                "knapsack ratio": knapsack_voting_ratio(),
+                "default borda": borda_voting(),
+                "default borda truncated": borda_voting(3),
+                "dowdall system borda": dowdall_system_voting(),
+                "dowdall system borda truncated": dowdall_system_voting(3),
+                "eurovision song contest borda": euro_song_contest_voting(),
+                "eurovision song contest borda truncated": euro_song_contest_voting(3)}
     # for name, r in rankings.items():
     #     print(name, ": ", r)
-    # rankings_pd = pd.DataFrame(rankings)
-    # rankings_pd.to_excel(path_ranking())
+    rankings_pd = pd.DataFrame(rankings)
+    rankings_pd.to_excel(path_ranking())
 
-    # # rankings = pd.read_excel(path_ranking(), index_col=0)
-    # # print(rankings)
+    # rankings = pd.read_excel(path_ranking(), index_col=0)
+    # print(rankings)
 
-    # # ... on which we perform budgeting.
-    # costs = pd.read_excel(path_costs())
-    # approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
-    # for name, r in rankings.items():
-    #     approval = knapsack_budgeting(r, costs)
-    #     print(name, ':\n', approval, "\n")
-    #     print('test: ', approval.iloc[0, 0])
-    #     temp = []
-    #     for project in range(no_projects):
-    #         temp.append(approval.iloc[0, project])
-    #     approval_pd.loc[name] = temp
-    # approval_pd.to_excel(path_approved_projects())
+    # ... on which we perform budgeting.
+    costs = pd.read_excel(path_costs())
+    approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
+    for name, r in rankings.items():
+        approval = knapsack_budgeting(r, costs)
+        # print(name, ':\n', approval, "\n")
+        # print('test: ', approval.iloc[0, 0])
+        temp = []
+        for project in range(no_projects):
+            temp.append(approval.iloc[0, project])
+        approval_pd.loc[name] = temp
+    approval_pd.to_excel(path_approved_projects())
 
-    # ranking_keys = [key for key in rankings]
+    ranking_keys = [key for key in rankings]
 
-    # # Finally, evaluate the voters' results with the selected projects.
-    # satisfaction(ranking_keys)
+    # Finally, evaluate the voters' results with the selected projects.
+    satisfaction(ranking_keys, constants.run_no)
+
+
+if __name__ == '__main__':
+    for constants.run_no in range(3):
+        print(constants.run_no)
+        main_function()
+
+

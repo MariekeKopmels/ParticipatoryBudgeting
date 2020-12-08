@@ -2,21 +2,21 @@
 # For the final results, we use €10k, 10 projecten van €2000-8000, 10k deelnemers.
 
 # The base folder where this GitHub project is stored on your computer.
-folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
-# folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
+# folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
+folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 # folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
 
 # General data constants
-no_voters = 10  # NB: this shouldn't be lower than 5
-no_projects = 6
+no_voters = 500  # NB: this shouldn't be lower than 5
+no_projects = 20
 
 # Utilities constants
 algorithm = 'mallows'
-min_utility = 0     # of a voter
-max_utility = 99    # of a voter
+min_utility = 1     # of a voter
+max_utility = 100    # of a voter
 
 # Money constants
-min_cost = 2000     # of a project
+min_cost = 200     # of a project
 max_cost = 5000     # of a project
 budget = 10000
 
@@ -25,10 +25,13 @@ mallows_p = 0.6
 opposite_true_rankings = True
 division = 0.5
 
+# Run number
+run_no = 0
+
 
 def path_utilities():
     return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '.xlsx'
+        no_projects) + '/run_no=' + str(run_no) + '.xlsx'
 
 
 def path_costs():
@@ -52,4 +55,9 @@ def path_approved_projects():
 
 def path_satisfaction():
     return folder + 'results/satisfaction_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '.xlsx'
+        no_projects) + '/run_no=' + str(run_no) + '.xlsx'
+
+
+def path_satisfaction_folder():
+    return folder + 'results/satisfaction_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects)

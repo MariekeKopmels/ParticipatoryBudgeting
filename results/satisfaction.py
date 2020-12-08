@@ -1,5 +1,6 @@
 import pandas as pd
-from constants import no_voters, no_projects, path_approved_projects, path_utilities, path_satisfaction
+from constants import no_voters, no_projects, path_approved_projects, path_utilities, path_satisfaction, path_satisfaction_folder
+from pathlib import Path
 
 
 def add_result_columns(utilities):
@@ -8,7 +9,7 @@ def add_result_columns(utilities):
     utilities[-3] = min(utilities[:no_voters])
 
 
-def satisfaction(ranking_keys):
+def satisfaction(ranking_keys, run_no):
     approved_projects = pd.read_excel(path_approved_projects(), index_col=1)
     utilities = pd.read_excel(path_utilities(), index_col=0)
     columns = ['voter' + str(j) for j in range(no_voters)]
@@ -38,6 +39,8 @@ def satisfaction(ranking_keys):
 
         approved_dataframe.loc[ranking_keys[algorithm]] = approved_utils
         total_dataframe.loc[ranking_keys[algorithm]] = total_utils
+
+    Path(path_satisfaction_folder()).mkdir(parents=True, exist_ok=True)
 
     with pd.ExcelWriter(path_satisfaction()) as writer:
         approved_dataframe.to_excel(writer, sheet_name='approved')
