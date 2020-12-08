@@ -8,7 +8,7 @@ folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 
 # General data constants
 no_voters = 500  # NB: this shouldn't be lower than 5
-no_projects = 20
+no_projects = 10
 
 # Utilities constants
 algorithm = 'mallows'
@@ -32,6 +32,11 @@ run_no = 0
 def path_utilities():
     return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(
         no_projects) + '/run_no=' + str(run_no) + '.xlsx'
+
+
+def path_utilities_folder():
+    return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects)
 
 
 def path_costs():

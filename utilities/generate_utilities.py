@@ -3,6 +3,7 @@
 from datetime import datetime
 from random import seed, randint
 import pandas as pd
+from pathlib import Path
 from constants import *
 from utilities.mallows import Mallows, spread_voters, all_possible_rankings, pick_random, flip, true_ranking_utilities
 
@@ -22,8 +23,8 @@ def utilities_mallows(filename):
     true_rankings = [pick_random(permutations)]
     if opposite_true_rankings:
         true_rankings.append(flip(true_rankings[0]))
-    print("True rankings: ")
-    print(true_rankings) 
+    # print("True rankings: ")
+    # print(true_rankings)
 
     utilities = {}
     start_no = 0
@@ -43,6 +44,8 @@ def utilities_mallows(filename):
 
 
 def generate_utilities():
+    Path(path_utilities_folder()).mkdir(parents=True, exist_ok=True)
+
     path = path_utilities()
 
     if algorithm == 'random':
