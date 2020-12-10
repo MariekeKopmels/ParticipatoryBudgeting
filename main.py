@@ -17,8 +17,6 @@ from results.satisfaction import *
 
 import constants
 
-# from utilities.mallows_helper import mallows_helper
-
 
 def main_function():
     # # Generating utilities...

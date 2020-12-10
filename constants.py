@@ -1,16 +1,16 @@
 # This file contains the constants used throughout the project.
 
 # The base folder where this GitHub project is stored on your computer.
-# folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
+folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
 # folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
-folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
+# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/github/ParticipatoryBudgeting/'
 
 # General data constants
-no_voters = 300  # NB: this shouldn't be lower than 5
-no_projects = 20
+no_voters = 300
+no_projects = 15
 
 # Utilities constants
-algorithm = 'mallows'
+algorithm = 'random'
 min_utility = 1     # of a voter
 max_utility = 100    # of a voter
 
