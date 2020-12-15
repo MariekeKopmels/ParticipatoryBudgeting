@@ -1,10 +1,11 @@
 # This file contains the constants used throughout the project.
+from pathlib import Path
 
 # The base folder where this GitHub project is stored on your computer.
 # folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
 # folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
-folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/ParticipatoryBudgeting/'
-
+# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/ParticipatoryBudgeting/'
+folder = str(Path(Path().absolute())) + '/'
 
 # General data constants
 no_voters = 300

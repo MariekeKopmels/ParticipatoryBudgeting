@@ -106,7 +106,6 @@ def utilities_mallows_inefficient(filename):
 
 def generate_utilities():
     Path(path_utilities_folder()).mkdir(parents=True, exist_ok=True)
-
     path = path_utilities()
 
     if algorithm == 'random':
