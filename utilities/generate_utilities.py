@@ -7,7 +7,7 @@ from pathlib import Path
 
 import constants
 from constants import *
-from utilities.mallows import Mallows, spread_voters, all_possible_rankings, pick_random, flip, true_ranking_utilities
+from utilities.mallows import Mallows, spread_voters, all_possible_rankings, pick_random, flip, true_ranking_utilities, some_possible_rankings
 from utilities.graph import Graph
 
 
@@ -79,7 +79,8 @@ def utilities_mallows(filename):
 
 def utilities_mallows_inefficient(filename):
     seed(datetime.now())
-    permutations = all_possible_rankings(no_projects)
+    # permutations = all_possible_rankings(no_projects)
+    permutations = some_possible_rankings(no_projects, no_voters)
     true_rankings = [pick_random(permutations)]
     if opposite_true_rankings:
         true_rankings.append(flip(true_rankings[0]))
@@ -88,7 +89,7 @@ def utilities_mallows_inefficient(filename):
 
     utilities = {}
     start_no = 0
-    voters_per_u = spread_voters(2 if opposite_true_rankings else 1, no_voters)
+    voters_per_u = spread_voters(2 if opposite_true_rankings else 1)
     # print(voters_per_u)
     # Select one or more true rankings.
     for u, voters in zip(true_rankings, voters_per_u):
@@ -111,7 +112,7 @@ def generate_utilities():
     if algorithm == 'random':
         utilities_random(path)
     elif algorithm == 'mallows':
-        utilities_mallows(path)
+        utilities_mallows_inefficient(path)
     else:
         print('Type of algorithm not recognised.')
         exit(1)

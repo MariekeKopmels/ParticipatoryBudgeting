@@ -23,6 +23,7 @@ def main_function():
     random.seed(datetime.now())
     generate_utilities()
     generate_costs()
+    print("we made utilities")
 
     # print('run_no now is ', constants.run_no)
     # ... to which we apply multiple voting rules...
@@ -43,6 +44,8 @@ def main_function():
                 "eurovision song contest borda": euro_song_contest_voting(),
                 "eurovision song contest borda truncated": euro_song_contest_voting(3)}
 
+    print("finished algorithms")
+
     # for name, r in rankings.items():
     #     print(name, ": ", r)
     rankings_pd = pd.DataFrame(rankings)
@@ -51,6 +54,8 @@ def main_function():
     # rankings = pd.read_excel(path_ranking(), index_col=0)
     # print(rankings)
 
+
+    print("Applying budgeting")
     # ... on which we perform budgeting.
     costs = pd.read_excel(path_costs())
     approval_pd = pd.DataFrame(index=[key for key in rankings], columns=['project' + str(j) for j in range(no_projects)]) #index=[rankings[0, i] for i in range(14)],
@@ -67,6 +72,7 @@ def main_function():
     ranking_keys = [key for key in rankings]
 
     # Finally, evaluate the voters' results with the selected projects.
+    print("Evaluating satisfaction")
     satisfaction(ranking_keys, constants.run_no)
 
 

@@ -19,7 +19,7 @@
 import itertools
 
 from constants import *
-from random import random, randint
+from random import random, randint, shuffle
 
 
 class Mallows:
@@ -40,11 +40,11 @@ class Mallows:
     def get_mu_p(self, u):
         sum_mu = 0
         for v in self.permutations:
-            sum_mu += self.phi ** (-d_swap(v, u, no_projects))
+            sum_mu += self.phi ** (-d_swap(v, u))
         return sum_mu
 
     def _probability(self, v):
-        dist = d_swap(v, self.u, no_projects)
+        dist = d_swap(v, self.u)
         return 1 / self.mu_p * self.phi ** (-dist)
 
     # Select a random ranking permutations[j], taking into account the probabilities of each ranking.
@@ -80,6 +80,17 @@ def all_possible_rankings(no_projects):
     basis = list(range(no_projects))
     return list(itertools.permutations(basis))
 
+# Returns n permutations of the lists of projects
+def some_possible_rankings(no_projects, no_voters):
+    n = no_projects * no_voters
+    permutations = n * [0]
+    basis = list(range(no_projects))
+    for i in range(n):
+        shuffle(basis)
+        permutations[i] = tuple(basis.copy())
+    print(len(permutations))
+    return list(set(permutations))
+
 
 def pick_random(permutations):
     return permutations[randint(0, len(permutations) - 1)]
@@ -98,7 +109,6 @@ def d_swap(v, u):
                 # u and v do not agree on the ranking of alternatives i and j.
                 count += 1
     return count
-
 
 def flip(ranking):
     flip = [0] * len(ranking)
@@ -127,3 +137,6 @@ def true_ranking_utilities(u, permutations, no_voters_u, start_no):
         name = 'voter' + str(start_no + index)
         utilities[name] = [random_utilities[idx][0] for idx in range(no_projects)]
     return utilities
+
+# if __name__ == "__main__":
+#     print(some_possible_rankings(20, 300))
