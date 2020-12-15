@@ -5,6 +5,7 @@
 # folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
 folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/ParticipatoryBudgeting/'
 
+
 # General data constants
 no_voters = 300
 no_projects = 15

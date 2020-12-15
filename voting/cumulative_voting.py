@@ -13,6 +13,7 @@ def get_ballots(utilities):
 
 
 def cumulative_voting_sum():
+    print("  Cumulative voting sum")
     utilities = pd.read_excel(path_utilities(), index_col=0)
     ballots = get_ballots(utilities)
 
@@ -22,6 +23,7 @@ def cumulative_voting_sum():
 
 
 def cumulative_voting_ratio():
+    print("  Cumulative voting ratio")
     utilities = pd.read_excel(path_utilities(), index_col=0)
     ballots = get_ballots(utilities)
 
@@ -32,6 +34,7 @@ def cumulative_voting_ratio():
 
 
 def cumulative_voting_product():
+    print("  Cumulative voting product")
     utilities = pd.read_excel(path_utilities(), index_col=0)
     ballots = get_ballots(utilities)
 
