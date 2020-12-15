@@ -10,16 +10,16 @@ def generate_costs():
     costs = {}
 
     # Constants for the beta distribution
-    # alpha = 2
-    # beta = 7
+    alpha = 2
+    beta = 7
 
     for i in range(no_projects):
         name = 'project' + str(i)
-        # rand_double = betavariate(alpha, beta)
-        # while rand_double == 0:
-        #     rand_double = betavariate(alpha, beta)
-        # costs[name] = min_cost + rand_double * max_cost
-        costs[name] = randint(min_cost, max_cost)
+        rand_double = betavariate(alpha, beta)
+        while rand_double == 0:
+            rand_double = betavariate(alpha, beta)
+        costs[name] = min_cost + rand_double * max_cost
+        # costs[name] = randint(min_cost, max_cost)
     data = pd.DataFrame(costs, index=[0])
     data.to_excel(path, index=False, header=True)
 
