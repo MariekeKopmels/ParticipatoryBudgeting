@@ -36,6 +36,7 @@ def generate_thresholds():
 # if __name__ == '__main__':
 
 def threshold_approval_voting():
+    print("  Threshold approval voting")
     path = path_utilities()
     utilities = pd.read_excel(path)
     thresholds = generate_thresholds()

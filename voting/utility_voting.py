@@ -36,6 +36,7 @@ def aggregate_product(utility_ballots):
 
 
 def utility_voting_sum():
+    print("  Utility voting sum")
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
 
@@ -44,6 +45,7 @@ def utility_voting_sum():
 
 
 def utility_voting_ratio():
+    print("  Utility voting ratio")
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
     costs = pd.read_excel(path_costs())
@@ -53,6 +55,7 @@ def utility_voting_ratio():
 
 
 def utility_voting_product():
+    print("  Utility voting product")
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
     return aggregate_product(utilities)

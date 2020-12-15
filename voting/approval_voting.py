@@ -17,6 +17,7 @@ def approval(input):
 
 # if __name__ == '__main__':
 def approval_voting():
+    print("  Approval voting")
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
     approval_voting = approval(utilities)

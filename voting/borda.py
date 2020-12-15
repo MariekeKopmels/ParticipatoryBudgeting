@@ -79,6 +79,7 @@ def euro_song_contest(votes, vote_length = no_projects):
 # Call these functions to test differences between algorithms:
 
 def borda_voting(vote_length = no_projects):
+    print("  Borda voting")
     path = path_utilities()
     utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)
@@ -86,6 +87,7 @@ def borda_voting(vote_length = no_projects):
     return order_results(default)
 
 def dowdall_system_voting(vote_length = no_projects):
+    print("  Dowdall system voting")
     path = path_utilities()
     utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)
@@ -93,6 +95,7 @@ def dowdall_system_voting(vote_length = no_projects):
     return order_results(dowdall)
 
 def euro_song_contest_voting(vote_length = no_projects):
+    print("  Eurovision song contest voting")
     path = path_utilities()
     utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)

@@ -90,6 +90,7 @@ def knapsack_approval_ratio(utilities, costs):
 
 
 def knapsack_voting():
+    print("  Knapsack voting")
     path_util = path_utilities()
     utilities = pd.read_excel(path_util)
     path_c = path_costs()
@@ -101,6 +102,7 @@ def knapsack_voting():
 
 
 def knapsack_voting_ratio():
+    print("  Knapsack voting ratio")
     path_util = path_utilities()
     utilities = pd.read_excel(path_util)
     path_c = path_costs()
