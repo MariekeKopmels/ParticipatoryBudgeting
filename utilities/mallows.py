@@ -56,7 +56,7 @@ class Mallows:
             sum_p += self.probabilities[j]
             j += 1
         if j >= len(self.permutations):
-            return self.permutations[j-1]
+            return self.permutations[j - 1]
         return self.permutations[j]
 
 
@@ -80,6 +80,7 @@ def all_possible_rankings(no_projects):
     basis = list(range(no_projects))
     return list(itertools.permutations(basis))
 
+
 # Returns n permutations of the lists of projects
 def some_possible_rankings(no_projects, no_voters):
     n = no_projects * no_voters
@@ -88,7 +89,6 @@ def some_possible_rankings(no_projects, no_voters):
     for i in range(n):
         shuffle(basis)
         permutations[i] = tuple(basis.copy())
-    print(len(permutations))
     return list(set(permutations))
 
 
@@ -109,6 +109,7 @@ def d_swap(v, u):
                 # u and v do not agree on the ranking of alternatives i and j.
                 count += 1
     return count
+
 
 def flip(ranking):
     flip = [0] * len(ranking)

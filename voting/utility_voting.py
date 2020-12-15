@@ -2,6 +2,7 @@
 
 import pandas as pd
 from constants import *
+from math import sqrt
 
 
 # Returns a list of projects, sorted by decreasing voter preference per project cost.
@@ -24,15 +25,27 @@ def aggregate_sum(utility_ballots):
     return [utilities_per_project[i][1] for i in range(no_projects)]
 
 
+# Helper function for aggregate product
+def valid_product(aggregate):
+    for index in range(no_projects):
+        if aggregate.iloc[index] == 0:
+            return False
+    return True
+
+
 def aggregate_product(utility_ballots):
-    utility_ballots /= (no_voters * no_projects) # Normalize values s.t. products don't exceed max int.
+    utility_ballots /= sqrt(no_voters)  # Normalize values s.t. products don't exceed max int.
     aggregate = utility_ballots.product(axis=0)
+
+    if not valid_product(aggregate):
+        print("WARNING: aggregate_product has zero values! Ranking not correct.")
 
     # A list of tuples, where the first index of the tuple represents the sum of utilities and the second represents
     # the project number.
     utilities_per_project = [(aggregate['project' + str(i)], i) for i in range(no_projects)]
     utilities_per_project.sort(key=(lambda x: x[0]), reverse=True)
-    return [utilities_per_project[i][1] for i in range(no_projects)]
+    result = [utilities_per_project[i][1] for i in range(no_projects)]
+    return result
 
 
 def utility_voting_sum():
