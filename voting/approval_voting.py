@@ -15,7 +15,6 @@ def approval(input):
     return [x[1] for x in list]
 
 
-# if __name__ == '__main__':
 def approval_voting():
     print("  Approval voting")
     path = path_utilities()
