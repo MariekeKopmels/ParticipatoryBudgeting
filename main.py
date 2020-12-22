@@ -28,6 +28,7 @@ def main_function():
 
     print("Starting voting algorithms...")
 
+    # Generate ranked votes once to speed up borda voting
     ranked_votes = get_ranked_list()
 
     # print('run_no now is ', constants.run_no)
