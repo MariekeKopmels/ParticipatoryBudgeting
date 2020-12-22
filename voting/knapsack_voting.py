@@ -26,6 +26,8 @@ def generate_individual_ranking(voter, utilities):
     individual_utilities.sort(key=(lambda x:x[0]), reverse=True)
     individual_ranking = []
     for el in individual_utilities:
+        # TODO: pakt hier het laatste character van 'projectX' maar X is soms meer dan 1 char,
+        #  bijvoorbeeld project15 resulteerd in 5.
         individual_ranking.append(int(el[1][-1]))
     return individual_ranking
 
@@ -43,6 +45,8 @@ def generate_individual_ratio_ranking(voter, utilities, costs):
     individual_utilities_per_dollar.sort(key=(lambda x:x[0]), reverse=True)
     individual_ranking = []
     for el in individual_utilities_per_dollar:
+        # TODO: pakt hier het laatste character van 'projectX' maar X is soms meer dan 1 char,
+        #  bijvoorbeeld project15 resulteerd in 5.
         individual_ranking.append(int(el[1][-1]))
     return individual_ranking
 

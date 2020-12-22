@@ -15,6 +15,8 @@ def generate_priority_list(threshold_approval):
     list_votes_per_project.sort(key=(lambda x: x[0]), reverse=True)
     priority_list = []
     for el in list_votes_per_project:
+        # TODO: pakt hier het laatste character van 'projectX' maar X is soms meer dan 1 char,
+        #  bijvoorbeeld project15 resulteerd in 5.
         priority_list.append(int(el[1][-1]))
     return priority_list
 
