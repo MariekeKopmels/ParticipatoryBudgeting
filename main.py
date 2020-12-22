@@ -14,7 +14,7 @@ from voting.borda import euro_song_contest_voting
 
 from budgeting.knapsack_budgeting import knapsack_budgeting
 
-from results.satisfaction import *
+from evaluation.satisfaction import *
 
 import constants
 
@@ -77,7 +77,7 @@ def main_function():
 
     ranking_keys = [key for key in rankings]
 
-    # Finally, evaluate the voters' results with the selected projects.
+    # Finally, evaluate the voters' evaluation with the selected projects.
     print("Evaluating satisfaction...")
     satisfaction(ranking_keys, constants.run_no)
     print("Done.\n")

@@ -37,7 +37,7 @@ def aggregate_product(utility_ballots, cumulativeVoting):
     # Normalize values s.t. products don't exceed max int.
     utility_ballots /= sqrt(no_voters)
     if cumulativeVoting:
-        utility_ballots /= no_voters
+        utility_ballots *= no_voters
 
     aggregate = utility_ballots.product(axis=0)
 

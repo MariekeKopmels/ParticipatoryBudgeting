@@ -1,9 +1,6 @@
 # This file contains the constants used throughout the project.
 from pathlib import Path
 
-# The base folder where this GitHub project is stored on your computer.
-folder = str(Path(Path().absolute())) + '/'
-
 # General data constants
 no_voters = 300
 no_projects = 15
@@ -28,34 +25,33 @@ division = 0.5
 # Run number
 run_no = 0
 
+# The base folder where this GitHub project is stored on your computer.
+folder = str(Path(Path().absolute())) + '/results/util-algo=' + algorithm + '_costs-dist=' + cost_distribution + '_voters=' + str(no_voters) + '_projects=' + str(
+        no_projects) + '/'
+
 
 def path_utilities():
-    return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '/run_no=' + str(run_no) + '.xlsx'
+    return folder + 'utilities/run_no=' + str(run_no) + '.xlsx'
 
 
 def path_utilities_folder():
-    return folder + 'utilities/' + algorithm + '_utilities_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects)
+    return folder + 'utilities/'
 
 
 def path_costs():
-    return folder + 'utilities/' + cost_distribution + '_costs_projects=' + str(no_projects) + '.xlsx'
+    return folder + 'utilities/costs.xlsx'
 
 
 def path_ranking():
-    return folder + 'results/ranking_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '.xlsx'
+    return folder + 'ranking.xlsx'
 
 
 def path_budget():
-    return folder + 'results/budget_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '.xlsx'
+    return folder + 'budget.xlsx'
 
 
 def path_approved_projects():
-    return folder + 'results/approved_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '.xlsx'
+    return folder + 'approved_voters.xlsx'
 
 
 def path_satisfaction():
@@ -63,5 +59,4 @@ def path_satisfaction():
 
 
 def path_satisfaction_folder():
-    return folder + 'results/satisfaction_util-algo=' + algorithm + '_costs-dist=' + cost_distribution + '_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects)
+    return folder + 'satisfaction/'
