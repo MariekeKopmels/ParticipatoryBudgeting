@@ -6,6 +6,7 @@ from voting.knapsack_voting import knapsack_voting, knapsack_voting_ratio
 from voting.threshold_approval_voting import threshold_approval_voting
 from voting.utility_voting import utility_voting_sum, utility_voting_ratio, utility_voting_product
 from voting.cumulative_voting import cumulative_voting_sum, cumulative_voting_ratio, cumulative_voting_product
+from voting.borda import get_ranked_list
 from voting.borda import borda_voting
 from voting.borda import dowdall_system_voting
 from voting.borda import euro_song_contest_voting
@@ -26,6 +27,9 @@ def main_function():
     print("Generated utilities")
 
     print("Starting voting algorithms...")
+
+    ranked_votes = get_ranked_list()
+
     # print('run_no now is ', constants.run_no)
     # ... to which we apply multiple voting rules...
     rankings = {"approval": approval_voting(),
@@ -38,12 +42,12 @@ def main_function():
                 "cumulative product": cumulative_voting_product(),
                 "knapsack": knapsack_voting(),
                 "knapsack ratio": knapsack_voting_ratio(),
-                "default borda": borda_voting(),
-                "default borda truncated": borda_voting(3),
-                "dowdall system borda": dowdall_system_voting(),
-                "dowdall system borda truncated": dowdall_system_voting(3),
-                "eurovision song contest borda": euro_song_contest_voting(),
-                "eurovision song contest borda truncated": euro_song_contest_voting(3)}
+                "default borda": borda_voting(ranked_votes),
+                "default borda truncated": borda_voting(ranked_votes, vote_length = 8),
+                "dowdall system borda": dowdall_system_voting(ranked_votes),
+                "dowdall system borda truncated": dowdall_system_voting(ranked_votes, vote_length = 8),
+                "eurovision song contest borda": euro_song_contest_voting(ranked_votes),
+                "eurovision song contest borda truncated": euro_song_contest_voting(ranked_votes, vote_length = 8)}
 
     print("Finished algorithms")
 

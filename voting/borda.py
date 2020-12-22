@@ -78,26 +78,32 @@ def euro_song_contest(votes, vote_length = no_projects):
 
 # Call these functions to test differences between algorithms:
 
-def borda_voting(vote_length = no_projects):
-    print("  Borda voting")
+def get_ranked_list():
     path = path_utilities()
     utilities = pd.read_excel(path)
     ranked_votes = ranked_list(utilities)
+    return ranked_votes
+
+def borda_voting(ranked_votes, vote_length = no_projects):
+    print("  Borda voting")
+    # path = path_utilities()
+    # utilities = pd.read_excel(path)
+    # ranked_votes = ranked_list(utilities)
     default = default_borda(ranked_votes, vote_length)
     return order_results(default)
 
-def dowdall_system_voting(vote_length = no_projects):
+def dowdall_system_voting(ranked_votes, vote_length = no_projects):
     print("  Dowdall system voting")
-    path = path_utilities()
-    utilities = pd.read_excel(path)
-    ranked_votes = ranked_list(utilities)
+    # path = path_utilities()
+    # utilities = pd.read_excel(path)
+    # ranked_votes = ranked_list(utilities)
     dowdall = dowdall_system(ranked_votes, vote_length)
     return order_results(dowdall)
 
-def euro_song_contest_voting(vote_length = no_projects):
+def euro_song_contest_voting(ranked_votes, vote_length = no_projects):
     print("  Eurovision song contest voting")
-    path = path_utilities()
-    utilities = pd.read_excel(path)
-    ranked_votes = ranked_list(utilities)
+    # path = path_utilities()
+    # utilities = pd.read_excel(path)
+    # ranked_votes = ranked_list(utilities)
     euro = euro_song_contest(ranked_votes, vote_length)
     return order_results(euro)
