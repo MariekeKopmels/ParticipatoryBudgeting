@@ -39,5 +39,5 @@ def cumulative_voting_product():
     ballots = get_ballots(utilities)
 
     # Rank projects from highest to lowest product of received votes
-    project_ranking = aggregate_product(ballots)
+    project_ranking = aggregate_product(ballots, True)
     return project_ranking

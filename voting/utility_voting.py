@@ -33,8 +33,12 @@ def valid_product(aggregate):
     return True
 
 
-def aggregate_product(utility_ballots):
-    utility_ballots /= sqrt(no_voters)  # Normalize values s.t. products don't exceed max int.
+def aggregate_product(utility_ballots, cumulativeVoting):
+    # Normalize values s.t. products don't exceed max int.
+    utility_ballots /= sqrt(no_voters)
+    if cumulativeVoting:
+        utility_ballots /= no_voters
+
     aggregate = utility_ballots.product(axis=0)
 
     if not valid_product(aggregate):
@@ -71,7 +75,7 @@ def utility_voting_product():
     print("  Utility voting product")
     path = path_utilities()
     utilities = pd.read_excel(path, index_col=0)
-    return aggregate_product(utilities)
+    return aggregate_product(utilities, False)
 
 
 if __name__ == "__main__":
