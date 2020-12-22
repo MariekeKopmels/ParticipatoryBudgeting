@@ -5,7 +5,7 @@ from pathlib import Path
 folder = str(Path(Path().absolute())) + '/'
 
 # General data constants
-no_voters = 10
+no_voters = 300
 no_projects = 15
 
 # Utilities constants

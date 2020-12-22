@@ -14,7 +14,7 @@ def generate_priority_list(knapsack_approval):
     list_votes_per_project.sort(key=(lambda x: x[0]), reverse=True)
     priority_list = []
     for el in list_votes_per_project:
-        priority_list.append(int(el[1][-1]))
+        priority_list.append(int(el[1][7:]))
     return priority_list
 
 
@@ -25,10 +25,10 @@ def generate_individual_ranking(voter, utilities):
     individual_utilities = list(zip(individual_utilities, individual_utilities.index))
     individual_utilities.sort(key=(lambda x:x[0]), reverse=True)
     individual_ranking = []
+    # print(individual_utilities)
     for el in individual_utilities:
-        # TODO: pakt hier het laatste character van 'projectX' maar X is soms meer dan 1 char,
-        #  bijvoorbeeld project15 resulteerd in 5.
-        individual_ranking.append(int(el[1][-1]))
+        individual_ranking.append(int(el[1][7:]))
+        # print(individual_ranking)
     return individual_ranking
 
 
@@ -45,8 +45,6 @@ def generate_individual_ratio_ranking(voter, utilities, costs):
     individual_utilities_per_dollar.sort(key=(lambda x:x[0]), reverse=True)
     individual_ranking = []
     for el in individual_utilities_per_dollar:
-        # TODO: pakt hier het laatste character van 'projectX' maar X is soms meer dan 1 char,
-        #  bijvoorbeeld project15 resulteerd in 5.
         individual_ranking.append(int(el[1][-1]))
     return individual_ranking
 
