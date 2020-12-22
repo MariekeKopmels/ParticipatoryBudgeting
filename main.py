@@ -79,7 +79,7 @@ def main_function():
 
 
 if __name__ == '__main__':
-    for constants.run_no in range(10):
+    for constants.run_no in range(1):
         print("Run: ", constants.run_no)
         main_function()
 
