@@ -3,7 +3,7 @@ from constants import no_voters, no_projects, path_approved_projects, path_utili
     path_satisfaction_folder
 import constants
 from pathlib import Path
-from statistics import mean
+from statistics import mean, stdev
 
 
 def add_result_columns(utilities):
@@ -51,11 +51,12 @@ def satisfaction(ranking_keys, run_no):
 
 
 def combine_results(ranking_keys):
-    columns = list(range(constants.max_runs)) + ['average']
+    columns = list(range(constants.max_runs)) + ['average', 'stdev']
     average_sum = pd.DataFrame(index=ranking_keys, columns=columns)
     average_min = pd.DataFrame(index=ranking_keys, columns=columns)
     average_max = pd.DataFrame(index=ranking_keys, columns=columns)
 
+    # Store the statistics of each voting rule during every run in one DataFrame per statistic (e.g. sum).
     for constants.run_no in range(constants.max_runs):
         data = pd.read_excel(path_satisfaction(), index_col=0)
 
@@ -63,10 +64,12 @@ def combine_results(ranking_keys):
         average_min[constants.run_no] = data["min"]
         average_max[constants.run_no] = data["max"]
 
-    for row in range(len(ranking_keys)):
-        average_sum.iloc[row, constants.max_runs] = mean(average_sum.iloc[row, :constants.max_runs])
-        average_min.iloc[row, constants.max_runs] = mean(average_min.iloc[row, :constants.max_runs])
-        average_max.iloc[row, constants.max_runs] = mean(average_max.iloc[row, :constants.max_runs])
+    # For each dataframe, calculate statistics over every row (=voting rule) and store in right-most column.
+    for df in [average_sum, average_min, average_max]:
+        for row in range(len(ranking_keys)):
+            data = df.iloc[row, :constants.max_runs]
+            df.iloc[row, constants.max_runs + 0] = mean(data)
+            df.iloc[row, constants.max_runs + 1] = stdev(data)  # sample standard deviation
 
     with pd.ExcelWriter(constants.path_combination()) as writer:
         average_sum.to_excel(writer, sheet_name='sum')
