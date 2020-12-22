@@ -2,9 +2,6 @@
 from pathlib import Path
 
 # The base folder where this GitHub project is stored on your computer.
-# folder = 'C:/Users/lonne/Google Drive/Bachelor AI/2020-2021/Bachelorproject AI/Github/ParticipatoryBudgeting/'
-# folder = '/Users/remcosteen/Desktop/AI5/BP/Algorithm/ParticipatoryBudgeting/'
-# folder = '/home/imme/Documents/AI/Bachelor year 4/Bachelor project/ParticipatoryBudgeting/'
 folder = str(Path(Path().absolute())) + '/'
 
 # General data constants
@@ -21,7 +18,7 @@ max_utility = 100    # of a voter
 min_cost = 200     # of a project
 max_cost = 5000     # of a project
 budget = 10000
-cost_distribution = 'betavariate' # either 'betavariate' or 'gaussian'
+cost_distribution = 'betavariate'  # either 'betavariate' or 'gaussian'
 
 # Mallows constants
 mallows_p = 0.6
@@ -62,10 +59,9 @@ def path_approved_projects():
 
 
 def path_satisfaction():
-    return folder + 'results/satisfaction_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '/run_no=' + str(run_no) + '.xlsx'
+    return path_satisfaction_folder() + '/run_no=' + str(run_no) + '.xlsx'
 
 
 def path_satisfaction_folder():
-    return folder + 'results/satisfaction_voters=' + str(no_voters) + '_projects=' + str(
+    return folder + 'results/satisfaction_util-algo=' + algorithm + '_costs-dist=' + cost_distribution + '_voters=' + str(no_voters) + '_projects=' + str(
         no_projects)
