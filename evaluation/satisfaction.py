@@ -1,6 +1,9 @@
 import pandas as pd
-from constants import no_voters, no_projects, path_approved_projects, path_utilities, path_satisfaction, path_satisfaction_folder
+from constants import no_voters, no_projects, path_approved_projects, path_utilities, path_satisfaction, \
+    path_satisfaction_folder
+import constants
 from pathlib import Path
+from statistics import mean
 
 
 def add_result_columns(utilities):
@@ -45,3 +48,27 @@ def satisfaction(ranking_keys, run_no):
     with pd.ExcelWriter(path_satisfaction()) as writer:
         approved_dataframe.to_excel(writer, sheet_name='approved')
         total_dataframe.to_excel(writer, sheet_name='total')
+
+
+def combine_results(ranking_keys):
+    columns = list(range(constants.max_runs)) + ['average']
+    average_sum = pd.DataFrame(index=ranking_keys, columns=columns)
+    average_min = pd.DataFrame(index=ranking_keys, columns=columns)
+    average_max = pd.DataFrame(index=ranking_keys, columns=columns)
+
+    for constants.run_no in range(constants.max_runs):
+        data = pd.read_excel(path_satisfaction(), index_col=0)
+
+        average_sum[constants.run_no] = data["sum"]
+        average_min[constants.run_no] = data["min"]
+        average_max[constants.run_no] = data["max"]
+
+    for row in range(len(ranking_keys)):
+        average_sum.iloc[row, constants.max_runs] = mean(average_sum.iloc[row, :constants.max_runs])
+        average_min.iloc[row, constants.max_runs] = mean(average_min.iloc[row, :constants.max_runs])
+        average_max.iloc[row, constants.max_runs] = mean(average_max.iloc[row, :constants.max_runs])
+
+    with pd.ExcelWriter(constants.path_combination()) as writer:
+        average_sum.to_excel(writer, sheet_name='sum')
+        average_min.to_excel(writer, sheet_name='min')
+        average_max.to_excel(writer, sheet_name='max')

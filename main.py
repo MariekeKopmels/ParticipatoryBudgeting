@@ -82,10 +82,15 @@ def main_function():
     satisfaction(ranking_keys, constants.run_no)
     print("Done.\n")
 
+    return ranking_keys
+
 
 if __name__ == '__main__':
-    for constants.run_no in range(1):
+    ranking_keys = []
+    for constants.run_no in range(max_runs):
         print("Run: ", constants.run_no)
-        main_function()
+        ranking_keys = main_function()
+
+    combine_results(ranking_keys)
 
 

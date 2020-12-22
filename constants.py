@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 300
+no_voters = 15
 no_projects = 15
 
 # Utilities constants
@@ -23,9 +23,10 @@ opposite_true_rankings = True
 division = 0.5
 
 # Run number
+max_runs = 2
 run_no = 0
 
-# The base folder where this GitHub project is stored on your computer.
+# The folder in which the results will be stored on your computer.
 folder = str(Path(Path().absolute())) + '/results/util-algo=' + algorithm + '_costs-dist=' + cost_distribution + '_voters=' + str(no_voters) + '_projects=' + str(
         no_projects) + '/'
 
@@ -60,3 +61,7 @@ def path_satisfaction():
 
 def path_satisfaction_folder():
     return folder + 'satisfaction/'
+
+
+def path_combination():
+    return path_satisfaction_folder() + 'combined_results.xlsx'
