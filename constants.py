@@ -23,7 +23,7 @@ opposite_true_rankings = True
 division = 0.5
 
 # Run number
-max_runs = 2
+max_runs = 10
 run_no = 0
 
 # The folder in which the results will be stored on your computer.
