@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 15
+no_voters = 200
 no_projects = 15
 
 # Utilities constants
@@ -23,7 +23,7 @@ opposite_true_rankings = True
 division = 0.5
 
 # Run number
-max_runs = 10
+max_runs = 50
 run_no = 0
 
 # The folder in which the results will be stored on your computer.
