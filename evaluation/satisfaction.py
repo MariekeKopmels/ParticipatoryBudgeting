@@ -51,7 +51,7 @@ def satisfaction(ranking_keys, run_no):
 
 
 def combine_results(ranking_keys):
-    columns = list(range(constants.max_runs)) + ['average', 'stdev']
+    columns = list(range(constants.max_runs))
     average_sum = pd.DataFrame(index=ranking_keys, columns=columns)
     average_min = pd.DataFrame(index=ranking_keys, columns=columns)
     average_max = pd.DataFrame(index=ranking_keys, columns=columns)
@@ -64,12 +64,16 @@ def combine_results(ranking_keys):
         average_min[constants.run_no] = data["min"]
         average_max[constants.run_no] = data["max"]
 
-    # For each dataframe, calculate statistics over every row (=voting rule) and store in right-most column.
-    for df in [average_sum, average_min, average_max]:
-        for row in range(len(ranking_keys)):
-            data = df.iloc[row, :constants.max_runs]
-            df.iloc[row, constants.max_runs + 0] = mean(data)
-            df.iloc[row, constants.max_runs + 1] = stdev(data)  # sample standard deviation
+    # For each dataframe, calculate statistics over every row (=voting rule) and store in right-most columns.
+    # for df in [average_sum, average_min, average_max]:
+    #     for row in range(len(ranking_keys)):
+    #         data = df.iloc[row, :constants.max_runs]
+    #         df.iloc[row, constants.max_runs + 0] = mean(data)
+    #         df.iloc[row, constants.max_runs + 1] = stdev(data)  # sample standard deviation
+
+    average_sum = average_sum.transpose()
+    average_min = average_min.transpose()
+    average_max = average_max.transpose()
 
     with pd.ExcelWriter(constants.path_combination()) as writer:
         average_sum.to_excel(writer, sheet_name='sum')
