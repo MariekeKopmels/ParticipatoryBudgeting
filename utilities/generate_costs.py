@@ -9,6 +9,7 @@ def valid_costs(costs):
         return False
     return True
 
+
 # This function generates numbers between min_cost and max_cost for the specified no_projects.
 # It draws from the beta distribution with alpha = 2 and beta = 7.
 def generate_costs_betavariate():
@@ -47,6 +48,7 @@ def generate_costs_gaussian():
     data = pd.DataFrame(costs, index=[0])
     data.to_excel(path, index=False, header=True)
 
+
 def generate_costs():
     if cost_distribution == 'betavariate':
         return generate_costs_betavariate()
@@ -56,6 +58,6 @@ def generate_costs():
         print("please define cost distribution in constants.py")
         exit()
 
+
 if __name__ == "__main__":
     generate_costs()
-

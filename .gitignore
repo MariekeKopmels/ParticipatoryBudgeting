@@ -131,3 +131,4 @@ dmypy.json
 
 # PyCharm environment
 .idea
+.Rproj.user

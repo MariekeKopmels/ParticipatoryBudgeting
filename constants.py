@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 200
+no_voters = 50
 no_projects = 25
 
 # Utilities constants
@@ -19,16 +19,20 @@ cost_distribution = 'betavariate'  # either 'betavariate' or 'gaussian'
 
 # Mallows constants
 mallows_p = 0.6
-opposite_true_rankings = True
+opposite_true_rankings = False
 division = 0.5
 
 # Run number
-max_runs = 10
+max_runs = 100
 run_no = 0
 
 # The folder in which the results will be stored on your computer.
-folder = str(Path(Path().absolute())) + '/results/util-algo=' + algorithm + '_costs-dist=' + cost_distribution + '_voters=' + str(no_voters) + '_projects=' + str(
-        no_projects) + '/'
+folder = str(Path(Path().absolute())) + '/results/' +\
+         'util-algo=' + algorithm +\
+         '_costs-dist=' + cost_distribution +\
+         '_voters=' + str(no_voters) + '_projects=' + str(no_projects) +\
+         '_true-rankings=' + str(2 if opposite_true_rankings else 1) +\
+         '/'
 
 
 def path_utilities():

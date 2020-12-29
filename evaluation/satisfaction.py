@@ -3,7 +3,6 @@ from constants import no_voters, no_projects, path_approved_projects, path_utili
     path_satisfaction_folder
 import constants
 from pathlib import Path
-from statistics import mean, stdev
 
 
 def add_result_columns(utilities):
