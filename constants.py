@@ -19,19 +19,20 @@ cost_distribution = 'betavariate'  # either 'betavariate' or 'gaussian'
 
 # Mallows constants
 mallows_p = 0.6
-opposite_true_rankings = False
+opposite_true_rankings = True
 division = 0.5
 
 # Run number
-max_runs = 100
+max_runs = 1
 run_no = 0
 
 # The folder in which the results will be stored on your computer.
 folder = str(Path(Path().absolute())) + '/results/' +\
-         'util-algo=' + algorithm +\
-         '_costs-dist=' + cost_distribution +\
-         '_voters=' + str(no_voters) + '_projects=' + str(no_projects) +\
+         'voters=' + str(no_voters) +\
+         '_projects=' + str(no_projects) +\
          '_true-rankings=' + str(2 if opposite_true_rankings else 1) +\
+         '_runs=' + str(max_runs) +\
+         '_costs-dist=' + cost_distribution +\
          '/'
 
 

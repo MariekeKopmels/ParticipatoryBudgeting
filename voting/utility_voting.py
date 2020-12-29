@@ -33,11 +33,32 @@ def valid_product(aggregate):
     return True
 
 
-def aggregate_product(utility_ballots, cumulativeVoting):
-    # Normalize values s.t. products don't exceed max int.
-    utility_ballots /= sqrt(no_voters)
-    if cumulativeVoting:
+# Returns fraction of elements that lie above zero.
+# def balance_above_one(ballots):
+#     return (ballots > 1).sum().sum() / (no_projects * no_voters)
+
+
+def aggregate_product(utility_ballots, cumulative_voting):
+    # Normalize values s.t. products don't exceed max int or min int.
+    if not cumulative_voting:
+        utility_ballots /= sqrt(no_voters)
+    else:
         utility_ballots *= no_voters
+
+    # times = 0
+    # factor = sqrt(no_voters)
+    # while balance_above_one(utility_ballots) > 0.5:  # Most elements have a value above zero.
+    #     times -= 1
+    #     utility_ballots /= factor
+    #
+    # while balance_above_one(utility_ballots) < 0.5:  # Most elements have a value below zero.
+    #     times += 1
+    #     utility_ballots *= factor
+
+    # if cumulative_voting:
+    #     utility_ballots *= no_voters
+
+    # print('times: ', times)
 
     aggregate = utility_ballots.product(axis=0)
 
@@ -79,4 +100,5 @@ def utility_voting_product():
 
 
 if __name__ == "__main__":
-    print(utility_voting_product())
+    pass
+
