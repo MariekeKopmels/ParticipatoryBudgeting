@@ -2,8 +2,8 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 20
-no_projects = 15
+no_voters = 200
+no_projects = 25
 
 # Utilities constants
 algorithm = 'mallows'
