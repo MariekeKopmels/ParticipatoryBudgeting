@@ -84,6 +84,8 @@ def utilities_mallows_inefficient(filename):
     true_rankings = [pick_random(permutations)]
     if opposite_true_rankings:
         true_rankings.append(flip(true_rankings[0]))
+        permutations[1] = true_rankings[1]
+    permutations[0] = true_rankings[0]
     # print("True rankings: ")
     # print(true_rankings)
 
