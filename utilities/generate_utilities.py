@@ -119,7 +119,7 @@ def generate_utilities():
         exit(1)
 
 
-if __name__ == "__main__":
-    for constants.run_no in range(4):
-        print(constants.run_no)
-        generate_utilities()
+# if __name__ == "__main__":
+#     for constants.run_no in range(4):
+#         print(constants.run_no)
+#         generate_utilities()

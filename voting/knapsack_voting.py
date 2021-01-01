@@ -7,6 +7,7 @@ from constants import *
 # Helper function, returns a priority list of all project, based on which project was approved by most of the voters,
 # i.e. the project with the most votes is no. 1, the project with the second most votes no. 2, etc.
 def generate_priority_list(knapsack_approval):
+    # print('knapsack approval: ', knapsack_approval)
     approval_counts = knapsack_approval.apply(pd.Series.value_counts)
     # TODO: Crashes when all projects combined are within budget
     votes_per_project = approval_counts.iloc[1]
@@ -45,7 +46,7 @@ def generate_individual_ratio_ranking(voter, utilities, costs):
     individual_utilities_per_dollar.sort(key=(lambda x:x[0]), reverse=True)
     individual_ranking = []
     for el in individual_utilities_per_dollar:
-        individual_ranking.append(int(el[1][-1]))
+        individual_ranking.append(int(el[1][7:]))
     return individual_ranking
 
 
