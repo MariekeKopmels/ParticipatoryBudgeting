@@ -37,7 +37,7 @@ def generate_costs_gaussian():
     costs = {}
 
     # Constants for the beta distribution
-    mean = 10(min_cost + max_cost) / 2
+    mean = (min_cost + max_cost) / 2
     sigma = (max_cost - min_cost) / 6
 
     while not valid_costs(costs):
