@@ -2,7 +2,7 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 50                  #50/250/500
+no_voters = 500                 #50/250/500
 no_projects = 25                #25
 
 # Utilities constants
@@ -19,7 +19,7 @@ cost_distribution = 'betavariate'  # either 'betavariate' or 'gaussian'
 
 # Mallows constants
 mallows_p = 0.6                 # 0.6
-opposite_true_rankings = True   # True/False
+opposite_true_rankings = False   # True/False
 division = 0.5                  # 0.5 (als we nog tijd over hebben leuk om naar andere verdelingen te kijken)
 
 # Run number
