@@ -12,8 +12,8 @@ max_utility = 100               # of a voter
 
 # Money constants
 # Note: cost of all projects combined must always be higher than budget
-min_cost = 150                  # of a project,
-max_cost = 20000                # of a project,
+min_cost = 0                    # of a project, 0
+max_cost = 20000                # of a project, 20000
 budget = 30000                  # 30.000
 cost_distribution = 'betavariate'  # either 'betavariate' or 'gaussian'
 
