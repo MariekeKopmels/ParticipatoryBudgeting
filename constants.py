@@ -2,29 +2,29 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 50
-no_projects = 25
+no_voters = 50                  #50/250/500
+no_projects = 25                #25
 
 # Utilities constants
-algorithm = 'mallows'
-min_utility = 1     # of a voter
-max_utility = 100    # of a voter
+algorithm = 'mallows'           #mallows
+min_utility = 1                 # of a voter
+max_utility = 100               # of a voter
 
 # Money constants
 # Note: cost of all projects combined must always be higher than budget
-min_cost = 200     # of a project
-max_cost = 5000     # of a project
-budget = 1000
+min_cost = 150                  # of a project,
+max_cost = 20000                # of a project,
+budget = 30000                  # 30.000
 cost_distribution = 'betavariate'  # either 'betavariate' or 'gaussian'
 
 # Mallows constants
-mallows_p = 0.6
-opposite_true_rankings = True
-division = 0.5
+mallows_p = 0.6                 # 0.6
+opposite_true_rankings = True   # True/False
+division = 0.5                  # 0.5 (als we nog tijd over hebben leuk om naar andere verdelingen te kijken)
 
 # Run number
-max_runs = 1
-run_no = 0
+max_runs = 100                  # 100
+run_no = 0                      # 0
 
 # The folder in which the results will be stored on your computer.
 folder = str(Path(Path().absolute())) + '/results/' +\

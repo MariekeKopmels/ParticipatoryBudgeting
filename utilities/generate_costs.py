@@ -17,8 +17,8 @@ def generate_costs_betavariate():
     costs = {}
 
     # Constants for the beta distribution
-    alpha = 2
-    beta = 7
+    alpha = 1.5
+    beta = 3
 
     while not valid_costs(costs):
         for i in range(no_projects):
