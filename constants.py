@@ -2,8 +2,8 @@
 from pathlib import Path
 
 # General data constants
-no_voters = 500                 #50/250/500
-no_projects = 25                #25
+no_voters = 10                 #50/250/500
+no_projects = 10                #25
 
 # Utilities constants
 algorithm = 'mallows'           #mallows
@@ -23,7 +23,7 @@ opposite_true_rankings = False   # True/False
 division = 0.5                  # 0.5 (als we nog tijd over hebben leuk om naar andere verdelingen te kijken)
 
 # Run number
-max_runs = 100                  # 100
+max_runs = 1                  # 100
 run_no = 0                      # 0
 
 # The folder in which the results will be stored on your computer.

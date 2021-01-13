@@ -1,5 +1,5 @@
 
-from constants import no_projects, no_voters, path_budget, path_costs, budget
+from constants import no_projects, path_budget, path_costs, budget
 import pandas as pd
 
 def knapsack_budgeting(project_ranking, costs):
@@ -12,6 +12,8 @@ def knapsack_budgeting(project_ranking, costs):
         if approved:
             budget_left -= costs.iloc[0, project]
     approval.iloc[1, 0] = budget_left
+    filename = path_budget()
+    approval.to_excel(filename, index=True, header=True)
     return approval
 
 

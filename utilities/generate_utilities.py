@@ -3,9 +3,7 @@
 from datetime import datetime
 from random import seed, randint, random, shuffle
 import pandas as pd
-from pathlib import Path
 
-import constants
 from constants import *
 from utilities.mallows import Mallows, spread_voters, all_possible_rankings, pick_random, flip, true_ranking_utilities, some_possible_rankings
 from utilities.graph import Graph
@@ -26,6 +24,8 @@ def get_permutation():
     return permutation
 
 
+# Get a permutation of a true ranking u that is transitive, i.e. if for projects x, y, z
+# it is known that x > y (x is preferred over y) and y > z, then it holds that x > z.
 def get_ranking(u):
     graph = Graph(no_projects)
 

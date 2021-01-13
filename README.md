@@ -20,12 +20,12 @@ The methods of voting that have been implemented are:
 - K-approval voting
 - Threshold approval voting
 - Knapsack voting
-- Value-for-money voting
 - Utility voting
+- Cumulative voting
 - Borda-rule voting
 
 ## Budgeting stage
-We currently only use knapsack budgeting. The projects are ordered by decreasing order of the number of votes they received, and selected one-by-one
+We only use knapsack budgeting. The projects are ordered by decreasing order of the number of votes they received, and selected one-by-one
 until the budget is full.
 
 ## Evaluation stage
