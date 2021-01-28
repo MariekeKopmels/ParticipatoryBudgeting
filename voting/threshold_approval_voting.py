@@ -28,7 +28,6 @@ def generate_threshold_approval(utilities, thresholds):
         # print('threshold of voter ', i, ' : ', thresh)
         for j in range(0, no_projects):
             approval.iloc[i,j] = utilities.iloc[i, j+1] > thresh
-    approval.to_excel(folder + 'threshold_approval.xlsx', index=True, header=True)
     return approval
 
 
