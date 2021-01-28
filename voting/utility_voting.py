@@ -1,5 +1,5 @@
 # Author:   Lonneke Pulles
-
+import numpy
 import pandas as pd
 from constants import *
 from math import sqrt
@@ -43,31 +43,23 @@ def aggregate_product(utility_ballots, cumulative_voting):
     if not cumulative_voting:
         utility_ballots /= sqrt(no_voters)
     else:
-        utility_ballots *= no_voters
+        utility_ballots *= sqrt(no_voters)
 
-    # times = 0
-    # factor = sqrt(no_voters)
-    # while balance_above_one(utility_ballots) > 0.5:  # Most elements have a value above zero.
-    #     times -= 1
-    #     utility_ballots /= factor
-    #
-    # while balance_above_one(utility_ballots) < 0.5:  # Most elements have a value below zero.
-    #     times += 1
-    #     utility_ballots *= factor
+    projectScores = [0] * no_projects
+    for column in range(len(utility_ballots.columns)):
+        project = utility_ballots.iloc[:, column]
+        project = numpy.array(project, dtype=numpy.float64)
+        projectScores[column] = numpy.multiply.reduce(project)
+        print(projectScores[column])
 
-    # if cumulative_voting:
-    #     utility_ballots *= no_voters
+    # aggregate = utility_ballots.product(axis=0)
 
-    # print('times: ', times)
-
-    aggregate = utility_ballots.product(axis=0)
-
-    if not valid_product(aggregate):
-        print("WARNING: aggregate_product has zero values! Ranking not correct.")
+    # if not valid_product(aggregate):
+    #     print("WARNING: aggregate_product has zero values! Ranking not correct.")
 
     # A list of tuples, where the first index of the tuple represents the sum of utilities and the second represents
     # the project number.
-    utilities_per_project = [(aggregate['project' + str(i)], i) for i in range(no_projects)]
+    utilities_per_project = [(projectScores[i], i) for i in range(no_projects)]
     utilities_per_project.sort(key=(lambda x: x[0]), reverse=True)
     result = [utilities_per_project[i][1] for i in range(no_projects)]
     return result
