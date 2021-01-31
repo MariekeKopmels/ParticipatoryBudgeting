@@ -33,11 +33,6 @@ def valid_product(aggregate):
     return True
 
 
-# Returns fraction of elements that lie above zero.
-# def balance_above_one(ballots):
-#     return (ballots > 1).sum().sum() / (no_projects * no_voters)
-
-
 def aggregate_product(utility_ballots, cumulative_voting):
     # Normalize values s.t. products don't exceed max int or min int.
     if not cumulative_voting:
@@ -50,12 +45,6 @@ def aggregate_product(utility_ballots, cumulative_voting):
         project = utility_ballots.iloc[:, column]
         project = numpy.array(project, dtype=numpy.float64)
         projectScores[column] = numpy.multiply.reduce(project)
-        print(projectScores[column])
-
-    # aggregate = utility_ballots.product(axis=0)
-
-    # if not valid_product(aggregate):
-    #     print("WARNING: aggregate_product has zero values! Ranking not correct.")
 
     # A list of tuples, where the first index of the tuple represents the sum of utilities and the second represents
     # the project number.

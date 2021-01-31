@@ -27,7 +27,6 @@ def generate_costs_betavariate():
             while rand_double == 0:
                 rand_double = betavariate(alpha, beta)
             costs[name] = min_cost + rand_double * max_cost
-            # costs[name] = randint(min_cost, max_cost)
     data = pd.DataFrame(costs, index=[0])
     data.to_excel(path, index=False, header=True)
 
@@ -57,7 +56,3 @@ def generate_costs():
     else:
         print("please define cost distribution in constants.py")
         exit()
-
-
-if __name__ == "__main__":
-    generate_costs()

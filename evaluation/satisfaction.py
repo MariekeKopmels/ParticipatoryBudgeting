@@ -63,13 +63,6 @@ def combine_results(ranking_keys):
         average_min[constants.run_no] = data["min"]
         average_max[constants.run_no] = data["max"]
 
-    # For each dataframe, calculate statistics over every row (=voting rule) and store in right-most columns.
-    # for df in [average_sum, average_min, average_max]:
-    #     for row in range(len(ranking_keys)):
-    #         data = df.iloc[row, :constants.max_runs]
-    #         df.iloc[row, constants.max_runs + 0] = mean(data)
-    #         df.iloc[row, constants.max_runs + 1] = stdev(data)  # sample standard deviation
-
     average_sum = average_sum.transpose()
     average_min = average_min.transpose()
     average_max = average_max.transpose()

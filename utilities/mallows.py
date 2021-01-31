@@ -138,6 +138,3 @@ def true_ranking_utilities(u, permutations, no_voters_u, start_no):
         name = 'voter' + str(start_no + index)
         utilities[name] = [random_utilities[idx][0] for idx in range(no_projects)]
     return utilities
-
-# if __name__ == "__main__":
-#     print(some_possible_rankings(20, 300))

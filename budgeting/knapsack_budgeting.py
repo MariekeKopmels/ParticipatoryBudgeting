@@ -15,12 +15,3 @@ def knapsack_budgeting(project_ranking, costs):
     filename = path_budget()
     approval.to_excel(filename, index=True, header=True)
     return approval
-
-
-if __name__ == '__main__':
-    project_ranking = [1, 3, 2, 5, 0, 4]
-    path_costs = path_costs()
-    costs = pd.read_excel(path_costs)
-    budget = knapsack_budgeting(project_ranking, costs)
-    filename = path_budget()
-    budget.to_excel(filename, index=True, header=True)

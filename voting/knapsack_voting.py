@@ -9,7 +9,6 @@ from constants import *
 def generate_priority_list(knapsack_approval):
     # print('knapsack approval: ', knapsack_approval)
     approval_counts = knapsack_approval.apply(pd.Series.value_counts)
-    # TODO: Crashes when all projects combined are within budget
     votes_per_project = approval_counts.iloc[1]
     list_votes_per_project = list(zip(votes_per_project, votes_per_project.index))
     list_votes_per_project.sort(key=(lambda x: x[0]), reverse=True)
@@ -26,10 +25,8 @@ def generate_individual_ranking(voter, utilities):
     individual_utilities = list(zip(individual_utilities, individual_utilities.index))
     individual_utilities.sort(key=(lambda x:x[0]), reverse=True)
     individual_ranking = []
-    # print(individual_utilities)
     for el in individual_utilities:
         individual_ranking.append(int(el[1][7:]))
-        # print(individual_ranking)
     return individual_ranking
 
 

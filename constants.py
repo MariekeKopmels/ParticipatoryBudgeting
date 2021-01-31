@@ -1,6 +1,7 @@
 # This file contains the constants used throughout the project.
 from pathlib import Path
 
+
 # General data constants
 no_voters = 500                 #50/250/500
 no_projects = 25                #25

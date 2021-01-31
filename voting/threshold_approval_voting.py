@@ -9,7 +9,6 @@ from constants import *
 # i.e. the project with the most votes is no. 1, the project with the second most votes no. 2, etc.
 def generate_priority_list(threshold_approval):
     approval_counts = threshold_approval.apply(pd.Series.value_counts)
-    # TODO: Crashes when all projects combined are within budget
     votes_per_project = approval_counts.iloc[1]
     list_votes_per_project = list(zip(votes_per_project, votes_per_project.index))
     list_votes_per_project.sort(key=(lambda x: x[0]), reverse=True)
@@ -25,7 +24,6 @@ def generate_threshold_approval(utilities, thresholds):
     approval = pd.DataFrame(index=['voter' + str(i) for i in range(0, no_voters)], columns=['project' + str(j) for j in range(no_projects)])
     for i in range(0, no_voters):
         thresh = thresholds[i]
-        # print('threshold of voter ', i, ' : ', thresh)
         for j in range(0, no_projects):
             approval.iloc[i,j] = utilities.iloc[i, j+1] > thresh
     return approval
